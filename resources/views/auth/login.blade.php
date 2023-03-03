@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
-    <title>Login | Tailwind Starter Kit by Creative Tim</title>
+    <title>Login | Pengaduan Depok</title>
 </head>
 
 <body class="text-gray-800 antialiased " style="background-image: url({{asset('/img/register_bg_2.png')}}); background-size: 100%; background-repeat: no-repeat;">
