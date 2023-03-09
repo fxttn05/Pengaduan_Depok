@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->string('category');
-            $table->string('pengaduan_date');
+            $table->date('pengaduan_date');
             $table->enum('status', ['report', 'process', 'done']);
-            $table->string('end_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->boolean('is_public');
             $table->timestamps();
         });

@@ -24,4 +24,5 @@ Auth::routes();
 Route::group(['prefix' => 'pengaduan', 'as' => 'pengaduan.'], function () {
     Route::get('/', [PengaduanController::class, 'index'])->name('index');
     Route::post('/post', [PengaduanController::class, 'store'])->name('post');
+    Route::get('/{id}', [PengaduanController::class, 'show'])->name('detail');
 });

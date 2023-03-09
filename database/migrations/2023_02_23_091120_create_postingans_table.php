@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('document_id')->references('id')->on('documents');
             $table->unsignedBigInteger('image_id');
             $table->foreign('image_id')->references('id')->on('images');
-            $table->string('post_date');
+            $table->date('post_date');
             $table->text('isi');
             $table->string('category');
             $table->timestamps();

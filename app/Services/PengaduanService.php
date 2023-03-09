@@ -19,12 +19,27 @@ class PengaduanService
         $this->image = $image;
     }
     
-    public function handleGetAllpengaduan()
+    public function handleGetAllPengaduan()
     {
+        $p = $this->pengaduan->sortByDesc('pengadaun_date')->get();
+        return $p;
+    }
+
+    public function handleGetAllPublicPengaduan()
+    {
+        // dd($this->pengaduan->where('is_public', 1)->orderBy('created_at', 'desc')->get());
+        $p = $this->pengaduan->where('is_public', 1)->orderBy('created_at', 'desc')->get();
+        return $p;  
+    }
+
+    public function getPengaduanById($id){
+        $p = $this->pengaduan->find($id);
+        return $p;  
     }
 
     public function handlePostPengaduan($request)
     {
+        // dd($request->pengaduan_date);
         $request->validate([
             'judul' => 'required',
             'isi' => 'required',
@@ -38,16 +53,16 @@ class PengaduanService
             'judul' => $request->judul,
             'isi' => $request->isi,
             'category' => $request->category,
-            'pengaduan_date' => $request->pengaduan_date,
+            'pengaduan_date' => $request->pengaduan_date ,
             'status' => 'report',
             'is_public' => $request->is_public,
         ]);
 
         foreach($request->file('image') as $image) {
-            $file = str_replace(' ','-',$image->getClientOriginalName());
+            $file = str_replace(' ','_',$image->getClientOriginalName());
             $filename = Carbon::now()->format('Hisdmy').'_'.$file;
-            $image->move(public_path('img'), $filename);
-            $this->images->create([
+            $image->move(public_path('image'), $filename);
+            $this->image->create([
                 'pengaduan_id' => $pengaduan->id,
                 'image' => $filename
             ]);

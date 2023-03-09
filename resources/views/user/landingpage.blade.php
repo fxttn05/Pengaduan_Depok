@@ -13,65 +13,66 @@
     <title>Pengaduan Depok</title>
     <style>
         .switch-field {
-	display: flex;
-	overflow: hidden;
-}
+            display: flex;
+            overflow: hidden;
+        }
 
-.switch-field input {
-	position: absolute !important;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	width: 1px;
-	border: 0;
-	overflow: hidden;
-}
+        .switch-field input {
+            position: absolute !important;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            width: 1px;
+            border: 0;
+            overflow: hidden;
+        }
 
-.switch-field label {
-	background-color: #e4e4e4;
-	color: rgba(0, 0, 0, 0.6);
-	font-size: 14px;
-	line-height: 1;
-	text-align: center;
-	padding: 8px 16px;
-	margin-right: -1px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-	transition: all 0.1s ease-in-out;
-}
+        .switch-field label {
+            background-color: #e4e4e4;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 14px;
+            line-height: 1;
+            text-align: center;
+            padding: 8px 16px;
+            margin-right: -1px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.1s ease-in-out;
+        }
 
-.switch-field label:hover {
-	cursor: pointer;
-}
+        .switch-field label:hover {
+            cursor: pointer;
+        }
 
-.switch-field input:checked + label {
-	background-color: rgb(30, 58, 138);
-	box-shadow: none;
-    color: azure
-}
+        .switch-field input:checked+label {
+            background-color: rgb(30, 58, 138);
+            box-shadow: none;
+            color: azure
+        }
 
-.switch-field label:first-of-type {
-	border-radius: 4px 0 0 4px;
-}
+        .switch-field label:first-of-type {
+            border-radius: 4px 0 0 4px;
+        }
 
-.switch-field label:last-of-type {
-	border-radius: 0 4px 4px 0;
-}
+        .switch-field label:last-of-type {
+            border-radius: 0 4px 4px 0;
+        }
 
-/* This is just for CodePen. */
+        /* This is just for CodePen. */
 
-.form {
-	max-width: 600px;
-	font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
-	font-weight: normal;
-	line-height: 1.625;
-	margin: 8px auto;
-	padding: 16px;
-}
+        .form {
+            max-width: 600px;
+            font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+            font-weight: normal;
+            line-height: 1.625;
+            margin: 8px auto;
+            padding: 16px;
+        }
 
-h2 {
-	font-size: 18px;
-	margin-bottom: 8px;
-}
+        h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
     </style>
 </head>
 
@@ -82,13 +83,17 @@ h2 {
             <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                 <img src="{{asset('/img/logo_pede_nobg.png')}}" alt="" class="w-24  ">
             </div>
-            <div class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden" id="example-collapse-navbar">
+            <div class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
+                id="example-collapse-navbar">
                 @guest
                 @else
                 <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
                     <li class="flex items-center">
-                        
-                        <a  class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout </a>
+
+                        <a class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                            href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout
+                        </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -101,44 +106,40 @@ h2 {
     </nav>
     {{-- main --}}
     <main>
-        <div class="relative pt-2 pb-32 flex content-center items-center justify-center" style="min-height: 40vh; max-height: 45vh;">
-            <div class="absolute top-0 w-full h-full bg-center bg-cover" style='background-image: url("{{asset('img/depok.png')}}");'>
+        <div class="relative pt-2 pb-32 flex content-center items-center justify-center"
+            style="min-height: 40vh; max-height: 45vh;">
+            <div class="absolute top-0 w-full h-full bg-center bg-cover"
+                style='background-image: url("{{asset('img/depok.png')}}");'>
                 <span id="blackOverlay" class="w-full h-full absolute opacity-40 bg-black"></span>
             </div>
-            <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"style="height: 70px;">
-                <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg"preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+            <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+                style="height: 70px;">
+                <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
                     <polygon class="text-gray-300 fill-current" points="2560 0 2560 100 0 100"></polygon>
                 </svg>
             </div>
         </div>
-        
+
         <div class="pb-20 bg-blue-900 -mt-20" style="height: 50rem; ">
-            <div class="lg:container mx-auto px-4 md:px-0">
-                <div class="flex-row md:flex relative">
+            <div class="lg:container mx-auto px-6 lg:px-2">
+                <div class="flex-row lg:flex relative">
 
-                    <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                        <div class="relative flex flex-col min-w-0 break-words bg-blue-50 w-full mb-8 shadow-lg rounded-lg">
-                            <div class="px-4 py-5 flex-auto h-96 align-middle">
-                                <h6 class="text-xl font-semibold mb-5">Cari Pengaduan</h6>
-                                <form id="lets_search" action="" style="" class="mx-auto mt-3">
-                                    <input type="text" name="str" id="str" class="rounded w-80 md:w-36 lg:w-48 " placeholder="Cari Pengaduan">
-                                    {{-- <input type="submit" value="send" name="send" id="send"> --}}
-                                  </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class=" w-full md:w-8/12 container mx-auto h-96">
+                    <div class=" w-full lg:w-7/12 container mx-auto h-96">
                         <div class="flex flex-wrap justify-center" style="min-height:30rem;">
                             <div class="w-full px-4 ">
-                                <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-50 h-5/6 md:h-full">
+                                <div
+                                    class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-50 h-5/6 md:h-full">
                                     <div class="flex-auto p-5 lg:p-10 py-auto">
                                         @guest
-                                        <div class="mt-32 w-full mx-auto">   
-                                            <h4 class="text-3xl font-semiboxld text-center">If you want to continue, you must login or register</h4>
+                                        <div class="mt-10 md:mt-32 w-full mx-auto">
+                                            <h4 class="text-3xl font-semiboxld text-center">If you want to continue, you
+                                                must login or register</h4>
                                             <div class="mx-auto flex justify-center gap-3 mt-10">
-                                                <a class="bg-slate-200 py-2 px-4 rounded border border-spacing-0.5" href="{{route('login')}}"> login </a>
-                                                <button class="bg-slate-200 py-2 px-4 rounded border border-spacing-0.5" href="{{route('register')}}"> Register </button>
+                                                <a class="bg-slate-200 py-2 px-4 rounded border border-spacing-0.5"
+                                                    href="{{route('login')}}"> login </a>
+                                                <button class="bg-slate-200 py-2 px-4 rounded border border-spacing-0.5"
+                                                    href="{{route('register')}}"> Register </button>
                                             </div>
                                         </div>
                                         @else
@@ -148,30 +149,43 @@ h2 {
                                                 Sampaikan laporan mu kepada kami
                                             </p>
                                         </div>
-                                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{route('pengaduan.post')}}">
+                                        <form class="form-horizontal" enctype="multipart/form-data" method="POST"
+                                            action="{{route('pengaduan.post')}}">
                                             @csrf
                                             <div class="relative w-full mb-1">
                                                 <label for="" class="text-xs">judul laporan</label>
-                                                <input name="judul" type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Judul laporan" style="transition: all 0.15s ease 0s;" />
+                                                <input name="judul" type="text"
+                                                    class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                                    placeholder="Judul laporan"
+                                                    style="transition: all 0.15s ease 0s;" />
                                             </div>
                                             <div class="relative w-full mb-1">
                                                 <label for="" class="text-xs">isi laporan</label>
-                                                <textarea name="isi" rows="3" cols="80"class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"placeholder="Tulis Laporan anda disini..."></textarea>
+                                                <textarea name="isi" rows="3" cols="80"
+                                                    class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                                    placeholder="Tulis Laporan anda disini. Format: penjelasan dan lokasi secara spesifik"></textarea>
                                             </div>
                                             <div class="relative w-full mb-1">
                                                 <label for="" class="text-xs">kategori</label>
-                                                <input name="category" type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Kategori">
+                                                <input name="category" type="text"
+                                                    class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                                    placeholder="Kategori">
                                             </div>
                                             <div class="relative w-full mb-4 ">
                                                 <label for="" class="text-xs">tanggal kejadian</label>
-                                                <input name="pengaduan_date" type="date" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-full" placeholder="tanggalkejadian">
+                                                <input name="pengaduan_date" type="date"
+                                                    class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-full"
+                                                    placeholder="tanggalkejadian">
                                             </div>
                                             <div class="relative w-full mb-1 flex">
-                                                <input accept="image/*" name="image[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5" name="images[]" placeholder="bukti foto" multiple>
-                                                <img id="img" src="#" alt="" class="mx-5 max-h-20" /> 
+                                                <input accept="image/*" name="image[]" id="imageInput" required
+                                                    type="file"
+                                                    class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5"
+                                                    name="images[]" placeholder="bukti foto" multiple>
+                                                <img id="img" src="#" alt="" class="mx-5 max-h-20" />
                                             </div>
                                             <div class="switch-field mt-4">
-                                                <input type="radio" id="radio-one" name="is_public" value="1" checked/>
+                                                <input type="radio" id="radio-one" name="is_public" value="1" checked />
                                                 <label for="radio-one">Public</label>
                                                 <input type="radio" id="radio-two" name="is_public" value="0" />
                                                 <label for="radio-two">Private</label>
@@ -191,7 +205,61 @@ h2 {
                         </div>
                     </div>
 
-                </div>  
+                    <div class="pt-6 lg:pt-12 w-full lg:w-6/12 px-4 text-center ">
+                        <div class="flex flex-col min-w-0 max-w-xl break-words bg-blue-50 w-full mb-8 shadow-lg rounded-lg">
+                            <div class="px-4 py-5 flex-auto h-96 align-middle">
+                                <h6 class="text-xl font-semibold mb-5">Cari Pengaduan</h6>
+                                {{-- <form id="lets_search" action="" style="" class="mx-auto mt-3"> --}}
+                                    <input type="text" class="rounded w-full md:w-36 lg:w-48" id="Input" onkeyup="myFunction()" placeholder="Search for Pengaduan or Category" title="Type Pengaduan or Category" {{$publicPengaduan->count() != 0 ? '' : 'disabled'}}>
+                                    <div class="min-h-48 max-h-64 overflow-y-auto overflow-x-hidden">
+                                        <table class="bg-transparent" id="Table">
+                                            <tbody>
+                                                @foreach($publicPengaduan as $p)
+                                                <tr class="w-full">
+                                                    <td class=" p-4 text-left flex w-10/12">
+                                                        <div class="truncate">
+                                                            <a href="{{route('pengaduan.detail', $p->id)}}"> 
+                                                                <p class="text-xl font-semibold truncate">
+                                                                    {{$p->judul}}
+                                                                </p>
+                                                                <p class="hidden">
+                                                                    {{$p->category}}
+                                                                </p>
+                                                                <p class="hidden">
+                                                                    {{$p->isi}}
+                                                                </p>
+                                                            </a>
+                                                        </div>
+                                                    </td>    
+                                                </tr>   
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        {{-- <table>
+                                            <tbody>
+                                                @foreach($publicPengaduan as $p)
+                                                <tr>
+                                                    <div class="flex p-5 bg-slate-50 w-full">
+                                                        <div class="text-xl w-6/12 truncate">
+                                                            {{$p->judul}}
+                                                        </div>
+                                                        <div class="text-sm ">
+                                                            {{$p->pengaduan_date}}
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                                <hr class="border-1">
+                                                @endforeach
+                                            </tbody>
+                                        </table> --}}
+                                    </div>
+                                    {{-- <input type="submit" value="send" name="send" id="send"> --}}
+                                {{-- </form> --}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
         {{-- <section class="relative py-20">
@@ -486,8 +554,10 @@ h2 {
     </main>
     {{--     --}}
     <footer class="relative bg-gray-300 pt-8 pb-6">
-        <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20" style="height: 80px;">
-            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+        <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
+            style="height: 80px;">
+            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                version="1.1" viewBox="0 0 2560 100" x="0" y="0">
                 <polygon class="text-gray-300 fill-current" points="2560 0 2560 100 0 100"></polygon>
             </svg>
         </div>
@@ -578,6 +648,7 @@ h2 {
     </footer>
 
 </body>
+<script src="{{ asset('view/searchFilter.js') }}"></script>
 <script>
     function toggleNavbar(collapseID) {
         document.getElementById(collapseID).classList.toggle("hidden");
@@ -585,10 +656,10 @@ h2 {
     }
 
     imageInput.onchange = evt => {
-      const [file] = imageInput.files
-      if (file) {
-        img.src = URL.createObjectURL(file)
-      }
+        const [file] = imageInput.files
+        if (file) {
+            img.src = URL.createObjectURL(file)
+        }
     }
 
 </script>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengaduan;
+use App\Services\PengaduanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,9 +14,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(PengaduanService $pengaduanService)
     {
         $this->middleware('auth');
+        $this->pengaduanService = $pengaduanService;
     }
 
     /**
@@ -24,7 +27,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-            return view('user.landingpage');
+        if (Auth::user()->role == 'officer' || 'admin') {
+            //     return view('layouts.app');
+        }
+        
+        if(Auth::user()->role == 'public'){
+
+            $publicPengaduan = $this->pengaduanService->handleGetAllPublicPengaduan();
+            return view('user.landingpage', [
+                'publicPengaduan' => $publicPengaduan,
+            ]);
+
+        }
     }
         // if (Auth::user()->role == 'officer' || 'admin') {
         //     return view('layouts.app');
