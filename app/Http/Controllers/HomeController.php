@@ -46,6 +46,14 @@ class HomeController extends Controller
 
         }
     }
+
+    public function profile()
+    {
+        $pengaduan = $this->pengaduanService->handleGetAllPengaduan();
+        return view('user.profile', [
+            'pengaduan' => $pengaduan,
+        ]);
+    }
         // if (Auth::user()->role == 'officer' || 'admin') {
         //     return view('layouts.app');
         // }

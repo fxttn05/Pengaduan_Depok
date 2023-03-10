@@ -21,7 +21,7 @@ class PengaduanService
     
     public function handleGetAllPengaduan()
     {
-        $p = $this->pengaduan->orderBy('created_at', 'desc')->get();
+        $p = $this->pengaduan->orderBy('created_at', 'desc')->orderBy('status', 'desc')->get();
         return $p;
     }
 

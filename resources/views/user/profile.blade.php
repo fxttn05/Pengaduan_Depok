@@ -37,7 +37,7 @@
         ::-webkit-scrollbar-thumb:hover {
           background: #1E3A9E; 
         }
-        
+
         .switch-field {
             display: flex;
             overflow: hidden;
@@ -116,7 +116,7 @@
                 @else
                 <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
                     <li class="flex items-center">
-                        <a href="{{Route('profile')}}" class="text-white mr-2 text-xs">hello, <span class=" hover:underline">{{Auth::user()->name}}</span></a>
+                        <p class="text-white mr-2 text-xs">hello, <span class=" hover:underline">{{Auth::user()->name}}</span></p>
 
                         <a class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
                             href="{{ route('logout') }}"
@@ -153,145 +153,59 @@
             <div class="lg:container mx-auto px-6 lg:px-2">
                 <div class="flex-row lg:flex relative">
 
-                    <div class=" w-full lg:w-7/12 container mx-auto h-96">
+                    <div class=" w-full container mx-auto h-fit">
                         <div class="flex flex-wrap justify-center" style="min-height:30rem;">
                             <div class="w-full px-4 ">
-                                <div
-                                    class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-50 h-5/6 md:h-full">
+                                <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-50 h-5/6 md:h-full">
                                     <div class="flex-auto p-5 lg:p-10 py-auto">
-                                        @guest
-                                        <div class="mt-10 md:mt-32 w-full mx-auto">
-                                            <h4 class="text-3xl font-semiboxld text-center">If you want to continue, you
-                                                must login or register</h4>
-                                            <div class="mx-auto flex justify-center gap-3 mt-10">
-                                                <a class="bg-slate-200 py-2 px-4 rounded border border-spacing-0.5"
-                                                    href="{{route('login')}}"> login </a>
-                                                <a class="bg-slate-200 py-2 px-4 rounded border border-spacing-0.5"
-                                                    href="{{route('register')}}"> Register </a>
-                                            </div>
-                                        </div>
-                                        @else
                                         <div class="text-center">
-                                            <h4 class="text-xl font-semibold text-center">Pengaduan</h4>
-                                            <p class="leading-relaxed mb-4 text-gray-600 text-lg">
-                                                Sampaikan laporan mu kepada kami
-                                            </p>
+                                            <img alt="..." class="w-40 rounded-full align-middle mx-auto border-none shadow-lg" src="{{asset('img/profile_default.png')}}" />
+                                            <p class="mt-8 text-xl font-medium capitalize">{{Auth::user()->name}}</p>
+                                            <p class="mt-2 text-sm font-light ">{{Auth::user()->email}}</p>
                                         </div>
-                                        <form class="form-horizontal" enctype="multipart/form-data" method="POST"
-                                            action="{{route('pengaduan.post')}}">
-                                            @csrf
-                                            <div class="relative w-full mb-1">
-                                                <label for="" class="text-xs">judul laporan</label>
-                                                <input name="judul" type="text"
-                                                    class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                                                    placeholder="Judul laporan"
-                                                    style="transition: all 0.15s ease 0s;" />
-                                            </div>
-                                            <div class="relative w-full mb-1">
-                                                <label for="" class="text-xs">isi laporan</label>
-                                                <textarea name="isi" rows="3" cols="80"
-                                                    class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                                                    placeholder="Tulis Laporan anda disini. Format: penjelasan dan lokasi secara spesifik"></textarea>
-                                            </div>
-                                            <div class="relative w-full mb-1">
-                                                <label for="" class="text-xs">kategori</label>
-                                                <input name="category" type="text"
-                                                    class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                                                    placeholder="Kategori">
-                                            </div>
-                                            <div class="relative w-full mb-4 ">
-                                                <label for="" class="text-xs">tanggal kejadian</label>
-                                                <input name="pengaduan_date" type="date"
-                                                    class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-full"
-                                                    placeholder="tanggalkejadian">
-                                            </div>
-                                            <div class="relative w-full mb-1 flex">
-                                                <input accept="image/*" name="image[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5" name="images[]" placeholder="bukti foto" multiple>
-                                                <img id="img" src="#" alt="" class="mx-5 max-h-20" />
-                                            </div>
-                                            <div class="switch-field mt-4">
-                                                <input type="radio" id="radio-one" name="is_public" value="1" checked />
-                                                <label for="radio-one">Public</label>
-                                                <input type="radio" id="radio-two" name="is_public" value="0" />
-                                                <label for="radio-two">Private</label>
-                                            </div>
-                                            <div class="text-center mt-2">
-                                                <button
-                                                    class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                                                    type="submit" style="transition: all 0.15s ease 0s;">
-                                                    Send Message
-                                                </button>
-                                            </div>
-                                        </form>
-                                        @endguest
+                                        <div class="text-left mt-16 w-32">
+                                            <p>Pengaduan Saya </p>
+                                            <hr class="border-2">
+                                        </div>
+                                        <div class="min-h-48 max-h-64 overflow-y-auto overflow-x-hidden mt-2">
+                                            <table class="bg-transparent" id="Table">
+                                                <tbody>
+                                                    @foreach($pengaduan->where('user_id', Auth::id()) as $p)
+                                                    <tr class="w-full">
+                                                        <td class=" p-4 text-left w-10/12">
+                                                            <div class="truncate flex">
+                                                                <a href="{{route('pengaduan.detail', $p->id)}}">
+                                                                    <div class="text-sm font-semibold flex">
+                                                                        @if($p->image)
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image mr-2" viewBox="0 0 16 16">
+                                                                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                                                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
+                                                                          </svg>
+                                                                        
+                                                                        @endif 
+                                                                        {{$p->judul}}
+                                                                        
+                                                                    </div> 
+                                                                    <div class="hidden">
+                                                                            {{$p->category}}
+                                                                    </div>
+                                                                    <div class="hidden">
+                                                                            {{$p->isi}}
+                                                                    </div>
+                                                                </a>
+                                                            </div> 
+                                                            <div>
+                                                                <p class="text-xs font-light text-slate-500">{{$p->created_at->format('d F Y')}}<span class="ml-6">status : {{$p->status}}</span></p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>   
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+    
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-6 lg:pt-12 w-full lg:w-6/12 px-4 text-center ">
-                        <div class="flex flex-col min-w-0 max-w-xl break-words bg-blue-50 w-full mb-8 shadow-lg rounded-lg">
-                            <div class="px-4 py-5 flex-auto h-96 align-middle">
-                                <h6 class="text-xl font-semibold mb-5">Pengaduan Terbaru</h6>
-                                {{-- <form id="lets_search" action="" style="" class="mx-auto mt-3"> --}}
-                                    <input type="text" class="rounded w-full md:w-36 lg:w-48" id="Input" onkeyup="myFunction()" placeholder="Search for Pengaduan or Category" title="Type Pengaduan or Category" {{$publicPengaduan->count() != 0 ? '' : 'disabled'}}>
-                                    
-                                    <div class="min-h-48 max-h-64 overflow-y-auto overflow-x-hidden">
-                                        <table class="bg-transparent" id="Table">
-                                            <tbody>
-                                                @foreach($publicPengaduan as $p)
-                                                <tr class="w-full">
-                                                    <td class=" p-4 text-left w-10/12">
-                                                        <div class="truncate flex">
-                                                            <a href="{{route('pengaduan.detail', $p->id)}}">
-                                                                <div class="text-sm font-semibold flex">
-                                                                    @if($p->image)
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image mr-2" viewBox="0 0 16 16">
-                                                                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                                                        <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
-                                                                      </svg>
-                                                                    
-                                                                    @endif 
-                                                                    {{$p->judul}}
-                                                                    
-                                                                </div> 
-                                                                <div class="hidden">
-                                                                        {{$p->category}}
-                                                                </div>
-                                                                <div class="hidden">
-                                                                        {{$p->isi}}
-                                                                </div>
-                                                            </a>
-                                                        </div> 
-                                                        <div>
-                                                            <p class="text-xs font-light text-slate-500">{{$p->created_at->format('d F Y')}}<span class="ml-6">by : {{$p->user->name}}</span></p>
-                                                        </div>
-                                                    </td>
-                                                </tr>   
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        {{-- <table>
-                                            <tbody>
-                                                @foreach($publicPengaduan as $p)
-                                                <tr>
-                                                    <div class="flex p-5 bg-slate-50 w-full">
-                                                        <div class="text-xl w-6/12 truncate">
-                                                            {{$p->judul}}
-                                                        </div>
-                                                        <div class="text-sm ">
-                                                            {{$p->pengaduan_date}}
-                                                        </div>
-                                                    </div>
-                                                </tr>
-                                                <hr class="border-1">
-                                                @endforeach
-                                            </tbody>
-                                        </table> --}}
-                                    </div>
-                                    {{-- <input type="submit" value="send" name="send" id="send"> --}}
-                                {{-- </form> --}}
                             </div>
                         </div>
                     </div>

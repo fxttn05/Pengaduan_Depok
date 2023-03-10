@@ -77,6 +77,18 @@ class PengaduanController extends Controller
         ]);
     }
 
+    public function detail($id)
+    {
+        $pengaduan = $this->pengaduanService->getPengaduanById($id);
+        $image = $this->imageService-> handleGetAllImage();
+        $tanggapan = $this->tanggapanService->handleGetTanggapanByPengaduan($id);
+        return view('dashboard.pengaduan.detail', [
+            'pengaduan' => $pengaduan,
+            'image' => $image,
+            'tanggapan' => $tanggapan
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

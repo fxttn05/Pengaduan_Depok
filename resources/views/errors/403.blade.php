@@ -17,6 +17,35 @@
     <link rel="stylesheet" href="{{ asset('dist/css/tailwind.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('dist/libs/boxicons/css/boxicons.min.css') }}"/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /*IE and Edge*/
+            scrollbar-width: none;  /*Firefox*/
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+          width: 0.4rem;
+          height: 0.3rem
+        }
+
+        /* Handle */
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #1D4ED8; 
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #1E3A9E; 
+        }
+    </style>
 </head>
 <body>
     {{-- <!-- Navbar -->

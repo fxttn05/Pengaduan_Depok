@@ -73,7 +73,7 @@
                                 <a href="#pablo" class="text-gray-500"><small>Forgot password?</small></a>
                             </div>
                             <div class="w-1/2 text-right">
-                                <a href="#pablo" class="text-gray-500"><small>Create new account</small></a>
+                                <a href="/register" class="text-gray-500"><small>Create new account</small></a>
                             </div>
                         </div>
                     </div>

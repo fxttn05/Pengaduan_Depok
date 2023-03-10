@@ -12,6 +12,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <title>Pengaduan Depok</title>
     <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /*IE and Edge*/
+            scrollbar-width: none;  /*Firefox*/
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+          width: 0.4rem;
+          height: 0.3rem
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #1D4ED8; 
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #1E3A9E; 
+        }
+        
         .switch-field {
             display: flex;
             overflow: hidden;
@@ -87,6 +113,7 @@
                 @else
                 <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
                     <li class="flex items-center">
+                        <a href="{{Route('profile')}}" class="text-slate-700 mr-2 text-xs">hello, <span class=" hover:underline">{{Auth::user()->name}}</span></a>
 
                         <a class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
                             href="{{ route('logout') }}"
@@ -128,6 +155,7 @@
             </div>
             <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($pengaduan->pengaduan_date))}}</p>
             <p class="text-lg mb-6">{{$pengaduan->isi}}</p>
+            <p class="text-xs">status : {{$pengaduan->status}}</p>
         </div>   
         
         <div class="w-full bg-white px-8 md:px-16 py-5 rounded mb-4">

@@ -42,56 +42,50 @@
     <div class="px-4 md:px-10 mx-auto w-full -m-24">
         <div class="flex flex-wrap mt-4">
             <div class="w-full mb-12 xl:mb-0 px-4">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-                    <div class="w-full bg-white p-8 rounded mb-2">
-                        <p class="text-3xl mb-3 capitalize font-medium">{{$pengaduan->judul}}</p>
-                        <div class="flex mb-10 ">
-                            <P class="text-xs md:text-sm mr-5 font-light">by :{{$pengaduan->user->name}}</P>
-                            <p class="text-xs md:text-sm font-light">{{$pengaduan->created_at->format('l, d F Y')}}</p>
-                        </div>
-                        <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($pengaduan->pengaduan_date))}}</p>
-                        <p class="text-lg">{{$pengaduan->isi}}</p>
-                    </div>   
-                    
-                    <div class="w-full bg-white px-8 pt-1 pb-8 rounded">
-                        <p class="text-lg font-medium mb-4">Galeri</p>
-                        <div class="overflow-x-auto px-2">
-                            <div class="flex gap-4 ">
-                                @forelse($image->where('pengaduan_id', $pengaduan->id) as $key) 
-                                <div class="card">
-                                    <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
-                                    <button class="text-white text-xs bg-blue-900 px-2 py-1 rounded mt-1"><a href="{{asset('image/'. $key->image)}}" target="_blank">see..</a></button>
-                                </div>
-                                @empty                     
-                                @endforelse
-                            </div>
-                        </div>
+                <div class="w-full bg-white p-8 rounded mb-4 relative border-2">
+                    <p class="text-3xl mb-3 capitalize font-medium">{{$pengaduan->judul}}</p>
+                    <div class="flex mb-10 ">
+                        <P class="text-xs md:text-sm mr-5 font-light">by :{{$pengaduan->user->name}}</P>
+                        <p class="text-xs md:text-sm font-light">{{$pengaduan->created_at->format('l, d F Y')}}</p>
                     </div>
-
-                    @forelse($variable as $key => $value)
-                        
-                    @empty
-                        
-                    @endforelse
-            
-                    <div class="w-full bg-white p-8 rounded">
-                        <form action="{{Route('admin.replied', $pengaduan->id)}}" method="post" enctype="multipart/form-data" id="TanggapanTable">
-                            @csrf
-                            @method('put')
-                            <p class="text-lg font-medium mb-6">Tanggapan</p>
-                            <div class="my-3">
-                                <p class="Tanggapan" class="mb-4 mt-8">Masukkan tanggapan</p>
-                                <textarea name="tanggapan" rows="3" cols="80" class="border-1 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Sapa dengan baik lalu ketikan solusi terbaikmu" required></textarea>
+                    <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($pengaduan->pengaduan_date))}}</p>
+                    <p class="text-lg mb-6">{{$pengaduan->isi}}</p>
+                    <p class="text-xs">status : {{$pengaduan->status}}</p>
+                </div>   
+                
+                <div class="w-full bg-white px-8 pt-4 pb-8 rounded mb-4 relative border-2">
+                    <p class="text-lg mb-4">Galeri</p>
+                    <div class="overflow-x-auto px-2">
+                        <div class="flex gap-4 ">
+                            @forelse($image->where('pengaduan_id', $pengaduan->id) as $key) 
+                            <div class="card">
+                                <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
+                                <button class="text-white text-xs bg-blue-900 px-2 py-1 rounded mt-1"><a href="{{asset('image/'. $key->image)}}" target="_blank">see..</a></button>
                             </div>
-                            <div class="my-3 flex">
-                                <input accept="image/*" name="image[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5 border-2" name="images[]" placeholder="bukti foto" multiple>
-                                <img id="img" src="#" alt="" class="mx-5 max-h-20" />
-                            </div>
-
-                        </form>
-                        <button type="button" class="inline-block rounded bg-blue-900 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]" data-te-toggle="modal" data-te-target="#confirmationModal" data-te-ripple-init data-te-ripple-color="light">Tanggapi</button>
+                            @empty                     
+                            @endforelse
+                        </div>
                     </div>
                 </div>
+        
+                @forelse($tanggapan as $item)
+                <p class="text-xl mb-4 font-medium">Tanggapan</p>
+                <div class="w-full bg-white px-8 md:px-16 py-5 rounded mb-4 relative border-2">
+                    
+                    <p class="text-sm font-light mb-4">by : {{$item->user->name}}</p>
+                    <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($item->tanggapan_date))}}</p>
+                    <p class="text-lg mb-6">{{$item->tanggapan}}</p>
+                    @forelse($image->where('tanggapan_id', $item->id) as $key) 
+                            <div class="card">
+                                <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
+                                <button class="text-white text-xs bg-blue-900 px-2 py-1 rounded mt-1"><a href="{{asset('image/'. $key->image)}}" target="_blank">see..</a></button>
+                            </div>
+                    @empty
+                    @endforelse   
+                        
+                </div>
+                @empty
+                @endforelse
             </div>
             
         </div>

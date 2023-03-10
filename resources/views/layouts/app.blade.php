@@ -20,6 +20,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /*IE and Edge*/
+            scrollbar-width: none;  /*Firefox*/
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+          width: 0.4rem;
+          height: 0.3rem
+        }
+
+        /* Handle */
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #1D4ED8; 
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #1E3A9E; 
+        }
+    </style>
 
 </head>
 

@@ -19,6 +19,7 @@ use App\Http\Controllers\TanggapanController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 
 Auth::routes();
 
@@ -28,11 +29,9 @@ Route::group(['prefix' => 'pengaduan', 'as' => 'pengaduan.'], function () {
     Route::get('/{id}', [PengaduanController::class, 'show'])->name('detail');
     Route::get('/me/list', [PengaduanController::class, 'list'])->name('list'); 
     Route::put('/verified/{id}', [PengaduanController::class, 'verified'])->name('verification')->middleware('auth', 'officer');
+    Route::get('/detail/{id}', [PengaduanController::class, 'detail'])->name('detil')->middleware('auth', 'officer');
 });
 
-Route::group(['prefix' => 'tanggapan', 'as' => 'tanggapan.'], function(){
-    // Route::get('/', ])
-});
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'officer']], function(){
     Route::get('/pengaduan', [PengaduanController::class, 'allList'])->name('all.list');

@@ -53,7 +53,7 @@
                         <p class="text-lg">{{$pengaduan->isi}}</p>
                     </div>   
                     
-                    <div class="w-full bg-white px-8 pt-1 pb-8 rounded">
+                    <div class="w-full bg-white px-8 pt-4 pb-8 rounded">
                         <p class="text-lg font-medium mb-4">Galeri</p>
                         <div class="overflow-x-auto px-2">
                             <div class="flex gap-4 ">
