@@ -18,10 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('pengaduan_id');
             $table->foreign('pengaduan_id')->references('id')->on('pengaduans');
             $table->string('tanggapan');
-            $table->unsignedBigInteger('document_id');
-            $table->foreign('document_id')->references('id')->on('documents');
-            $table->unsignedBigInteger('image_id');
-            $table->foreign('image_id')->references('id')->on('images');
             $table->string('tanggapan_date');
             $table->timestamps();
         });

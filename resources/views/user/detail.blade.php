@@ -103,34 +103,65 @@
         </div>
     </nav>
 
-    <div class="bg-blue-900 h-fit p-16">
+    <div class="bg-blue-900 h-fit p-10 md:p-16 ">
 
         <button class="bg-white rounded-full p-2 mb-3">
             @guest
             <a href="{{route('index')}}" class="text-blue-900">
             @endguest
+            @if(Auth::user()->role == 'public')
             <a href="{{route('pengaduan.index')}}" class="text-blue-900">   
+                @elseif(Auth::user()->role == 'officer' || Auth::user()->role == 'admin')
+                <a href="{{route('admin.all.list')}}" class="text-blue-900">   
+            @endif
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
                 </svg>
             </a>
         </button>
 
-        <div class="w-full bg-white p-16 rounded">
+        <div class="w-full bg-white p-8 md:p-16 rounded mb-4">
             <p class="text-3xl mb-3 capitalize font-medium">{{$pengaduan->judul}}</p>
-            <div class="flex mb-10">
-                <P class="text-sm mr-5 font-light">by :{{$pengaduan->user->name}}</P>
-                <p class="text-sm font-light">{{$pengaduan->created_at->format('l, d F Y')}}</p>
+            <div class="flex mb-10 ">
+                <P class="text-xs md:text-sm mr-5 font-light">by :{{$pengaduan->user->name}}</P>
+                <p class="text-xs md:text-sm font-light">{{$pengaduan->created_at->format('l, d F Y')}}</p>
             </div>
-            <p class="text-base mb-2">Date: {{\Carbon\Carbon::parse($pengaduan->pengaduan_date)->format('l, d F Y')}}</p>
+            <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($pengaduan->pengaduan_date))}}</p>
             <p class="text-lg mb-6">{{$pengaduan->isi}}</p>
-            <div class="flex gap-4">
-                @forelse($image->where('pengaduan_id', $pengaduan->id) as $key) 
-                <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
-                @empty                     
-                @endforelse
-            </div>
         </div>   
         
+        <div class="w-full bg-white px-8 md:px-16 py-5 rounded mb-4">
+            <p class="text-lg mb-4">Galeri</p>
+            <div class="overflow-x-scroll px-2">
+                <div class="flex gap-4 ">
+                    @forelse($image->where('pengaduan_id', $pengaduan->id) as $key) 
+                    <div class="card">
+                        <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
+                        <button class="text-white text-xs bg-blue-900 px-2 py-1 rounded mt-1"><a href="{{asset('image/'. $key->image)}}" target="_blank">see..</a></button>
+                    </div>
+                    @empty                     
+                    @endforelse
+                </div>
+            </div>
+        </div>
+
+        <p class="text-xl mb-4 text-white font-medium">Tanggapan</p>
+        @forelse($tanggapan as $item)
+        <div class="w-full bg-white px-8 md:px-16 py-5 rounded mb-4">
+            
+            <p class="text-sm font-light mb-4">by : {{$item->user->name}}</p>
+            <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($item->tanggapan_date))}}</p>
+            <p class="text-lg mb-6">{{$item->tanggapan}}</p>
+            @forelse($image->where('tanggapan_id', $item->id) as $key) 
+                    <div class="card">
+                        <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
+                        <button class="text-white text-xs bg-blue-900 px-2 py-1 rounded mt-1"><a href="{{asset('image/'. $key->image)}}" target="_blank">see..</a></button>
+                    </div>
+            @empty
+            @endforelse   
+                
+        </div>
+        @empty
+        @endforelse
     </div>
 </body>

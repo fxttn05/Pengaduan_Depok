@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('tanggapan_id');
+            $table->foreign('tanggapan_id')->references('id')->on('tanggapans');
             $table->string('document');
             $table->enum('type', ['post', 'report']);
             $table->timestamps();

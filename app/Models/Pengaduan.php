@@ -12,7 +12,7 @@ class Pengaduan extends Model
     protected $casts = [
         'created_at' => 'datetime:d-m-Y H:i:s',
         'updated_at'    => 'datetime:d-m-Y H:i:s',
-        'pangaduan_date' => 'datetime:Y-m-d',
+        'pangaduan_date' => 'date:Y-m-d',
         'end_date' => 'datetime:d-m-Y H:i:s',
     ];
 
@@ -21,6 +21,10 @@ class Pengaduan extends Model
     ];
 
     public function image() {
+        return $this->hasOne(Image::class);
+    }
+
+    public function tanggapan() {
         return $this->hasOne(Image::class);
     }
 

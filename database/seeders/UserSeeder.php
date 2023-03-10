@@ -38,6 +38,22 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345'),
                 'role' => 'public', 
             ],
+            [
+                'name' => 'masyarakat1',
+                'NIK' => '318309200406001',
+                'telp' => '081213521000',
+                'email' => 'masyarakat1@PeDe',
+                'password' => bcrypt('12345'),
+                'role' => 'public', 
+            ],
+            [
+                'name' => 'masyarakat2',
+                'NIK' => '3183092004060002',
+                'telp' => '081213521001',
+                'email' => 'masyarkat@PeDe',
+                'password' => bcrypt('12345'),
+                'role' => 'public', 
+            ],
         ];
 
         foreach ($user as $key => $value) {

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Services\PengaduanService;
-use Illuminate\Http\Request;
+use App\Services\TanggapanService;
 
 class PengaduanController extends Controller
 {
-    public function __construct(PengaduanService $pengaduanService, ImageService $imageService)
+    public function __construct(PengaduanService $pengaduanService, ImageService $imageService, TanggapanService $tanggapanService)
     {
         $this->pengaduanService = $pengaduanService;
         $this->imageService = $imageService;
+        $this->tanggapanService = $tanggapanService;
     }
     /**
      * Display a listing of the resource.
@@ -19,9 +21,28 @@ class PengaduanController extends Controller
     public function index()
     {
         $publicPengaduan = $this->pengaduanService->handleGetAllPublicPengaduan();
+        $image = $this->imageService-> handleGetAllImage();
         return view('user.landingpage', [
             'publicPengaduan' => $publicPengaduan,
+            'image' => $image,
         ]);
+    }
+
+    public function allList()
+    {
+        $Pengaduan = $this->pengaduanService->handleGetAllPengaduan();
+        $image = $this->imageService-> handleGetAllImage();
+        return view('dashboard.pengaduan.index', [
+            'pengaduan' => $Pengaduan,
+            'image' => $image,
+        ]);
+
+    }
+
+    public function verified($id)
+    {
+        $this->pengaduanService-> handlePutStatusToVerified($id);
+        return redirect()->back();
     }
 
     /**
@@ -47,10 +68,12 @@ class PengaduanController extends Controller
     public function show($id)
     {
         $pengaduan = $this->pengaduanService->getPengaduanById($id);
-        $image = $this->imageService->handleGetAllImage();
+        $image = $this->imageService-> handleGetAllImage();
+        $tanggapan = $this->tanggapanService->handleGetTanggapanByPengaduan($id);
         return view('user.detail', [
             'pengaduan' => $pengaduan,
             'image' => $image,
+            'tanggapan' => $tanggapan
         ]);
     }
 

@@ -21,7 +21,7 @@ class PengaduanService
     
     public function handleGetAllPengaduan()
     {
-        $p = $this->pengaduan->sortByDesc('pengadaun_date')->get();
+        $p = $this->pengaduan->orderBy('created_at', 'desc')->get();
         return $p;
     }
 
@@ -69,5 +69,14 @@ class PengaduanService
         }
 
         return 'ok';
+    }
+
+    public function handlePutStatusToVerified($id)
+    {
+        $pengaduan = $this->pengaduan->find($id)->update([
+            'status' => 'verified'
+        ]);
+        // dd($pengaduan);
+        return $pengaduan;
     }
 }

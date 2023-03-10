@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
+use App\Services\ImageService;
 use App\Services\PengaduanService;
+use App\Services\TanggapanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +16,12 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(PengaduanService $pengaduanService)
+    public function __construct(PengaduanService $pengaduanService, ImageService $imageService, TanggapanService $tanggapanService)
     {
         $this->middleware('auth');
         $this->pengaduanService = $pengaduanService;
+        $this->imageService = $imageService;
+        $this->tanggapanService = $tanggapanService;
     }
 
     /**
@@ -27,15 +31,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->role == 'officer' || 'admin') {
-            //     return view('layouts.app');
+        if (Auth::user()->role == 'officer' || Auth::user()->role == 'admin') {
+            return view('dashboard.dashboard');
         }
         
         if(Auth::user()->role == 'public'){
 
             $publicPengaduan = $this->pengaduanService->handleGetAllPublicPengaduan();
+            $image = $this->imageService-> handleGetAllImage();
             return view('user.landingpage', [
                 'publicPengaduan' => $publicPengaduan,
+                'image' => $image,
             ]);
 
         }
