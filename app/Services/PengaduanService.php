@@ -18,12 +18,73 @@ class PengaduanService
         $this->pengaduan = $pengaduan;
         $this->image = $image;
     }
-    
+
     public function handleGetAllPengaduan()
     {
-        $p = $this->pengaduan->orderBy('created_at', 'desc')->orderBy('status', 'desc')->get();
-        return $p;
+        $p = $this->pengaduan->orderBy('status', 'desc')->orderBy('created_at')->get();
+        return $p;  
     }
+
+    public function handleGetAllPengaduanReport()
+    {
+        $p = $this->pengaduan->where('status', '1.report')->orderBy('created_at')->get();
+        return $p;  
+    }
+
+    public function handleGetAllPengaduanVerified()
+    {
+        // dd($this->pengaduan->where('is_public', 1)->orderBy('created_at', 'desc')->get());
+        $p = $this->pengaduan->where('status', '2.verified')->orderBy('created_at')->get();
+        return $p;  
+    }
+    public function handleGetAllPengaduanReplied()
+    {
+        // dd($this->pengaduan->where('is_public', 1)->orderBy('created_at', 'desc')->get());
+        $p = $this->pengaduan->where('status', '3.replied')->orderBy('created_at')->get();
+        return $p;  
+    }
+    
+    // percobaan
+    // public function handleGetAllRequestPengaduan($request)
+    // {
+    //     $param_show_report = $request->input('show_1.report');
+    //     $param_show_verified = $request->input('show_2.verified');
+    //     $param_show_replied = $request->input('show_3.replied');
+        
+    //     if ($param_show_report == 'true') {
+    //         $show_report = '1.report';
+    //     } else {
+    //         $show_report = null;
+    //     }
+    //     if ($param_show_verified == 'true') {
+    //         $show_verified = '2.verified';
+    //     } else {
+    //         $show_verified = null;
+    //     }
+    //     if ($param_show_replied == 'true') {
+    //         $show_replied = '3.replied';
+    //     } else {
+    //         $show_replied = null;
+    //     }
+
+    //     if ($show_report == null && $show_verified == null && $show_replied == null) {
+    //         $show_report = '1.report';
+    //         $show_verified = '2.verified';
+    //         $show_replied = '3.replied';
+    //     }
+        
+    //     $status_type = [$show_report, $show_verified, $show_replied];
+
+    //     if($status_type)
+    //     {
+    //         $p = $this->pengaduan->orderBy('status')->orderBy('created_at', 'desc')->when($status_type, function ($query, $status_type){
+    //             return $query->whereIn('status', $status_type);
+    //         })->get();
+    //     }else{
+    //         $p = $this->pengaduan->orderBy('status')->orderBy('created_at', 'desc')->get();
+    //     }
+    //     return $p;
+    // }
 
     public function handleGetAllPublicPengaduan()
     {
@@ -74,7 +135,7 @@ class PengaduanService
     public function handlePutStatusToVerified($id)
     {
         $pengaduan = $this->pengaduan->find($id)->update([
-            'status' => 'verified'
+            'status' => '2.verified'
         ]);
         // dd($pengaduan);
         return $pengaduan;

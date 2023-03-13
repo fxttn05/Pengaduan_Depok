@@ -14,11 +14,11 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        $user_id = [1, 2, 3, 4, 5, 7, 8, 9, 11, 12, 14, 15, 17, 19, 20, 23, 26, 29, 30];
-        for($i= 1; $i <=40; $i++){
+        $pengaduan_id = range(1, 400);
+        for($i= 1; $i <=550; $i++){
             Image::create([
                 'id' => $i,
-                'pengaduan_id' => $user_id[array_rand($user_id)],
+                'pengaduan_id' => $pengaduan_id[array_rand($pengaduan_id)],
                 'image' => 'example_image.png',
                 'created_at' => Carbon::now(),
             ]);

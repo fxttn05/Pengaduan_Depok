@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('isi');
             $table->string('category');
             $table->date('pengaduan_date');
-            $table->enum('status', ['report', 'verified', 'replied']);
+            $table->enum('status', ['1.report', '2.verified', '3.replied']);
             $table->date('end_date')->nullable();
             $table->boolean('is_public');
             $table->timestamps();

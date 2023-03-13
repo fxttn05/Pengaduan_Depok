@@ -39,7 +39,7 @@ class TanggapanService
         ]);
 
         $this->pengaduan->find($id)->update([
-            'status' => 'replied'
+            'status' => '3.replied'
         ]);
 
         foreach($request->file('image') as $image) {
@@ -52,14 +52,5 @@ class TanggapanService
                 'type' => 'tanggapan'
             ]);
         }
-    }
-
-    public function handlePutStatusToVerified($id)
-    {
-        $pengaduan = $this->pengaduan->find($id)->update([
-            'status' => 'verified'
-        ]);
-        // dd($pengaduan);
-        return $pengaduan;
     }
 }

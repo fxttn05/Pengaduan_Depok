@@ -70,7 +70,7 @@ class TanggapanController extends Controller
     {
         // dd($request);
         $this->tanggapanService->handlePostTanggapan($request, $id);
-        return redirect()->route('admin.all.list');
+        return redirect()->route('admin.all.list.verified');
     }
 
     /**

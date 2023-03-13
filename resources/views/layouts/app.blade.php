@@ -53,7 +53,7 @@
 
 <body>
     <div id="root">
-        <nav class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+        <nav class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-52 z-10 py-4 px-6">
             <div class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
                 <button class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent" type="button" onclick="toggleNavbar('example-collapse-sidebar')"> <i class="fas fa-bars"></i></button>
                 <img src="{{asset('img/logo_pede_nobg.png')}}" alt="" class="h-24 w-36 mx-auto mt-6">
@@ -73,7 +73,7 @@
                         </form>
                       </div>
                     </li>
-                  </ul>
+                </ul>
                 <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-50 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden" id="example-collapse-sidebar">
                     <hr class="my-4 md:min-w-full" />
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
@@ -83,13 +83,13 @@
                                 Dashboard</a>
                         </li>
                         <li class="items-center">
-                            <a class="{{request()->is('admin*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
+                            <a class="{{request()->is('admin/pengaduan*') || request()->is('pengaduan/detail*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
                                 href="{{Route('admin.all.list')}}"><i class="fas fa-file opacity-75 mr-2 ml-1 text-sm"></i>
                                 Pengaduan</a>
                         </li>
                         <li class="items-center">
-                            <a class="text-gray-700 hover:text-gray-900 text-xs uppercase py-3 font-bold block"
-                                href="#/dashboard"><i class="fas fa-user opacity-75 mr-2 ml-1 text-sm"></i>
+                            <a class="{{request()->is('admin/petugas*') || request()->is('pengaduan/detail*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
+                                href="{{Route('admin.petugas')}}"><i class="fas fa-user opacity-75 mr-2 ml-1 text-sm"></i>
                                 Petugas</a>
                         </li>
                         <li class="items-center">
@@ -110,7 +110,28 @@
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    @yield('js')
+    <script type="text/javascript">
+        var APP_URL = {!! json_encode(url('/')) !!};
+
+        function capitalize(string) {
+        return string.toLowerCase()
+            .split(' ')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+        }
+
+        function addOrUpdateURLParam (key, value) {
+            const searchParams = new URLSearchParams(window.location.search)
+            searchParams.set(key, value)
+            const newRelativePathQuery = window.location.pathname + "?" + searchParams.toString()
+            history.pushState(null, "", newRelativePathQuery)
+        };
+    </script>
+   <script>
         function toggleNavbar(collapseID) {
             document.getElementById(collapseID).classList.toggle("hidden");
             document.getElementById(collapseID).classList.toggle("block");

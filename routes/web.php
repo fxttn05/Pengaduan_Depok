@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\TanggapanController;
 
@@ -19,9 +20,12 @@ use App\Http\Controllers\TanggapanController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-
 Auth::routes();
+
+Route::group(['prefix' => 'profile',], function(){
+    Route::get('/', [HomeController::class, 'profile'])->name('profile');
+    Route::put('/{id}', [HomeController::class, 'profileEdit'])->name('profile.edit');
+});
 
 Route::group(['prefix' => 'pengaduan', 'as' => 'pengaduan.'], function () {
     Route::get('/', [PengaduanController::class, 'index'])->name('index');
@@ -35,7 +39,10 @@ Route::group(['prefix' => 'pengaduan', 'as' => 'pengaduan.'], function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'officer']], function(){
     Route::get('/pengaduan', [PengaduanController::class, 'allList'])->name('all.list');
+    Route::get('/pengaduan/verified', [PengaduanController::class, 'allListVerified'])->name('all.list.verified');
+    Route::get('/pengaduan/replied', [PengaduanController::class, 'allListReplied'])->name('all.list.replied');
     Route::get('/tanggapan/{id}', [TanggapanController::class, 'show'])->name('tanggapan');
     Route::put('/replied/{id}', [TanggapanController::class, 'update'])->name('replied');
     Route::put('/edit/{id}', [TanggapanController::class, 'edit'])->name('edit');
+    Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas');
 });

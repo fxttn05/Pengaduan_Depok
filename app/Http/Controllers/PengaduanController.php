@@ -28,11 +28,33 @@ class PengaduanController extends Controller
         ]);
     }
 
-    public function allList()
+    public function allList(Request $request)
     {
-        $Pengaduan = $this->pengaduanService->handleGetAllPengaduan();
+        $Pengaduan = $this->pengaduanService->handleGetAllPengaduanReport();
         $image = $this->imageService-> handleGetAllImage();
-        return view('dashboard.pengaduan.index', [
+        return view('dashboard.pengaduan.indexReport', [
+            'pengaduan' => $Pengaduan,
+            'image' => $image,
+        ]);
+
+    }
+
+    public function allListVerified(Request $request)
+    {
+        $Pengaduan = $this->pengaduanService->handleGetAllPengaduanVerified();
+        $image = $this->imageService-> handleGetAllImage();
+        return view('dashboard.pengaduan.indexVerified', [
+            'pengaduan' => $Pengaduan,
+            'image' => $image,
+        ]);
+
+    }
+
+    public function allListReplied(Request $request)
+    {
+        $Pengaduan = $this->pengaduanService->handleGetAllPengaduanReplied();
+        $image = $this->imageService-> handleGetAllImage();
+        return view('dashboard.pengaduan.indexReplied', [
             'pengaduan' => $Pengaduan,
             'image' => $image,
         ]);

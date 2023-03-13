@@ -149,7 +149,7 @@
             </div>
         </div>
 
-        <div class="pb-20 bg-blue-900 -mt-20" style="height: 45rem; ">
+        <div class="pb-20 bg-blue-900 -mt-20 h-[55rem] lg:h-[35rem]" >
             <div class="lg:container mx-auto px-6 lg:px-2">
                 <div class="flex-row lg:flex relative">
 
@@ -208,11 +208,12 @@
                                                 <input accept="image/*" name="image[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5" name="images[]" placeholder="bukti foto" multiple>
                                                 <img id="img" src="#" alt="" class="mx-5 max-h-20" />
                                             </div>
-                                            <div class="switch-field mt-4">
+
+                                            <div class="switch-field mt-8">
                                                 <input type="radio" id="radio-one" name="is_public" value="1" checked />
-                                                <label for="radio-one">Public</label>
+                                                <label for="radio-one">Public </label>
                                                 <input type="radio" id="radio-two" name="is_public" value="0" />
-                                                <label for="radio-two">Private</label>
+                                                <label for="radio-two"> Secret</label>
                                             </div>
                                             <div class="text-center mt-2">
                                                 <button
@@ -229,7 +230,7 @@
                         </div>
                     </div>
 
-                    <div class="pt-6 lg:pt-12 w-full lg:w-6/12 px-4 text-center ">
+                    <div class="pt-6 lg:pt-12 w-full lg:w-6/12 px-4 text-center mt-0 md:mt-80 lg:mt-0">
                         <div class="flex flex-col min-w-0 max-w-xl break-words bg-blue-50 w-full mb-8 shadow-lg rounded-lg">
                             <div class="px-4 py-5 flex-auto h-96 align-middle">
                                 <h6 class="text-xl font-semibold mb-5">Pengaduan Terbaru</h6>
@@ -253,18 +254,12 @@
                                                                     
                                                                     @endif 
                                                                     {{$p->judul}}
-                                                                    
+                                                                    <p class="hidden">{{$p->category}} {{$p->isi}} </p>
                                                                 </div> 
-                                                                <div class="hidden">
-                                                                        {{$p->category}}
-                                                                </div>
-                                                                <div class="hidden">
-                                                                        {{$p->isi}}
-                                                                </div>
                                                             </a>
                                                         </div> 
                                                         <div>
-                                                            <p class="text-xs font-light text-slate-500">{{$p->created_at->format('d F Y')}}<span class="ml-6">by : {{$p->user->name}}</span></p>
+                                                            <p class="text-xs font-light text-slate-500">{{date('d F Y', strtotime($p->created_at))}}<span class="ml-6">by : {{$p->user->name}}</span></p>
                                                         </div>
                                                     </td>
                                                 </tr>   

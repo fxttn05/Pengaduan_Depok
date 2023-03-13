@@ -37,7 +37,7 @@
                                 <input type="email" id="email" placeholder="type email" class="border-0 px-3 py-3 placeholder-gray-800 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus style="transition: all 0.15s ease 0s;" />
                                 
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="text-xs text-red-500 mt-2" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
@@ -49,14 +49,14 @@
                                 <input type="password" placeholder="type password" id="password" class="border-0 px-3 py-3 placeholder-gray-800 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="current-password" style="transition: all 0.15s ease 0s;" />
                             
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-xs text-red-500 mt-2" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div
                             <div>
                                 <label class="inline-flex items-center cursor-pointer">
-                                    <input id="customCheckLogin" class="form-checkbox border-1 rounded text-gray-800 ml-1 w-5 h-5 form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} style="transition: all 0.15s ease 0s;" />
+                                    <input id="customCheckLogin" class="form-checkbox border-1 rounded text-gray-800 ml-1 w-3 h-3 form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} style="transition: all 0.15s ease 0s;" />
                                     <span class="ml-2 text-sm font-semibold text-gray-700">Remember me</span>
                                 </label>
                             </div>

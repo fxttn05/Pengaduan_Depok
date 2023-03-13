@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="relative md:ml-64 bg-blueGray-50">
+<div class="relative md:ml-52 bg-blueGray-50">
     <nav class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
         <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
             <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold">Memberi Tanggapan</a>
@@ -50,7 +50,13 @@
                     </div>
                     <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($pengaduan->pengaduan_date))}}</p>
                     <p class="text-lg mb-6">{{$pengaduan->isi}}</p>
-                    <p class="text-xs">status : {{$pengaduan->status}}</p>
+                    @if($pengaduan->status == '1.report')
+                    <p class="text-xs">status : Report</p>
+                    @elseif($pengaduan->status == '2.verified')
+                    <p class="text-xs">status : Verified</p>
+                    @elseif($pengaduan->status == '3.replied')
+                    <p class="text-xs">status : Done (replied) </p>
+                    @endif
                 </div>   
                 
                 <div class="w-full bg-white px-8 pt-4 pb-8 rounded mb-4 relative border-2">
@@ -75,13 +81,17 @@
                     <p class="text-sm font-light mb-4">by : {{$item->user->name}}</p>
                     <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($item->tanggapan_date))}}</p>
                     <p class="text-lg mb-6">{{$item->tanggapan}}</p>
-                    @forelse($image->where('tanggapan_id', $item->id) as $key) 
-                            <div class="card">
-                                <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
-                                <button class="text-white text-xs bg-blue-900 px-2 py-1 rounded mt-1"><a href="{{asset('image/'. $key->image)}}" target="_blank">see..</a></button>
-                            </div>
-                    @empty
-                    @endforelse   
+                    <div class="overflow-x-auto px-2">
+                        <div class="flex gap-4">
+                            @forelse($image->where('tanggapan_id', $item->id) as $key) 
+                                    <div class="">
+                                        <img src="{{asset('image/'. $key->image)}}" alt="" class="max-h-56 max-w-48 rounded-lg hover:scale-125">  
+                                        <button class="text-white text-xs bg-blue-900 px-2 py-1 rounded mt-1"><a href="{{asset('image/'. $key->image)}}" target="_blank">see..</a></button>
+                                    </div>
+                            @empty
+                            @endforelse   
+                        </div>
+                    </div>
                         
                 </div>
                 @empty

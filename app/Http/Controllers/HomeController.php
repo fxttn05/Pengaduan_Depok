@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Pengaduan;
+use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Services\PengaduanService;
 use App\Services\TanggapanService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -32,7 +33,20 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'officer' || Auth::user()->role == 'admin') {
-            return view('dashboard.dashboard');
+            $publicPengaduan = $this->pengaduanService->handleGetAllPublicPengaduan();
+            $pengaduan = $this->pengaduanService->handleGetAllPengaduan();
+            $pengaduans = $this->pengaduanService->handleGetAllPengaduanReport();
+            $pengaduanV = $this->pengaduanService->handleGetAllPengaduanVerified();
+            $pengaduanR = $this->pengaduanService->handleGetAllPengaduanReplied();
+            $privatePengaduan =count($pengaduan) - count($publicPengaduan);
+            return view('dashboard.dashboard', [
+                'pengaduan' => $pengaduan,
+                'publicPengaduan' => $publicPengaduan,
+                'privatePengaduan' => $privatePengaduan,
+                'pengaduans' => $pengaduans,
+                'pengaduanV' => $pengaduanV,
+                'pengaduanR' => $pengaduanR,
+            ]);
         }
         
         if(Auth::user()->role == 'public'){
@@ -47,12 +61,24 @@ class HomeController extends Controller
         }
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
         $pengaduan = $this->pengaduanService->handleGetAllPengaduan();
+        $Pengaduans = $this->pengaduanService->handleGetAllPengaduanReport();
+        $PengaduanV = $this->pengaduanService->handleGetAllPengaduanVerified();
+        $PengaduanR = $this->pengaduanService->handleGetAllPengaduanReplied();
         return view('user.profile', [
             'pengaduan' => $pengaduan,
+            'pengaduanReport' => $Pengaduans,
+            'pengaduanVerified' => $PengaduanV,
+            'pengaduanReplied' => $PengaduanR,
         ]);
+    }
+    
+    public function profileEdit(Request $request, $id)
+    {
+        User::find($id)->update($request->all());
+        return redirect()->back();
     }
         // if (Auth::user()->role == 'officer' || 'admin') {
         //     return view('layouts.app');
