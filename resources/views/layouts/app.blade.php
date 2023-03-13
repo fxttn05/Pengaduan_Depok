@@ -87,11 +87,13 @@
                                 href="{{Route('admin.all.list')}}"><i class="fas fa-file opacity-75 mr-2 ml-1 text-sm"></i>
                                 Pengaduan</a>
                         </li>
+                        @if(Route::user()->role == 'admin')
                         <li class="items-center">
                             <a class="{{request()->is('admin/petugas*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
                                 href="{{Route('admin.petugas')}}"><i class="fas fa-user opacity-75 mr-2 ml-1 text-sm"></i>
                                 Petugas</a>
                         </li>
+                        @endif
                         {{-- <li class="items-center">
                             <a class="text-gray-400 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                                 href="//"><i class="fas fa-tv opacity-75 mr-2 text-sm" disabled></i>
