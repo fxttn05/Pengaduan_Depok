@@ -7,6 +7,7 @@
             <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
                 href="./index.html">Dashboard</a>
             <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
+                <p class="text-white mr-4 text-sm">halo, {{Auth::user()->name}}</p>
                 <a class="text-blueGray-500 block" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
                     <div class="items-center flex">
                         <span class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">

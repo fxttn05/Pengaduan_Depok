@@ -52,5 +52,15 @@ class TanggapanService
                 'type' => 'tanggapan'
             ]);
         }
+
+        foreach($request->file('document') as $document) {
+            $file = str_replace(' ','_',$document->getClientOriginalName());
+            $filename = Carbon::now()->format('Hisdmy').'_'.$file;
+            $document->move(public_path('document'), $filename);
+            $this->document->create([
+                'tanggapan_id' => $tanggapan->id,
+                'document' => $filename
+            ]);
+        }
     }
 }

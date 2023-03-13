@@ -131,16 +131,6 @@ class PengaduanService
             ]);
         }
 
-        foreach($request->file('document') as $document) {
-            $file = str_replace(' ','_',$document->getClientOriginalName());
-            $filename = Carbon::now()->format('Hisdmy').'_'.$file;
-            $document->move(public_path('document'), $filename);
-            $this->document->create([
-                'pengaduan_id' => $pengaduan->id,
-                'document' => $document
-            ]);
-        }
-
         return 'ok';
     }
 

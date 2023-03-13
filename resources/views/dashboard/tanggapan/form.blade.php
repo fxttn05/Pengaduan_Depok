@@ -6,6 +6,7 @@
         <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
             <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold">Memberi Tanggapan</a>
             <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
+                <p class="text-white mr-4 text-sm">halo, {{Auth::user()->name}}</p>
                 <a class="text-blueGray-500 block" href="#" onclick="openDropdown(event,'user-dropdown')">
                     <div class="items-center flex">
                         <span class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
@@ -84,9 +85,9 @@
                                 <img id="img" src="#" alt="" class="mx-5 max-h-20" />
                             </div>
 
-                            <p for="image" class="mb-2 mt-4">Laporan</p>
+                            <p for="image" class="mb-2 mt-4">Laporan (PDF only)</p>
                             <div class="my-3 flex">
-                                <input name="document[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5 border-2" name="document[]" placeholder="bukti foto" multiple accept="appdf">
+                                <input name="document[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5 border-2" name="document[]" placeholder="bukti foto" multiple accept="application/pdf">
                                 <img id="img" src="#" alt="" class="mx-5 max-h-20" />
                             </div>
 

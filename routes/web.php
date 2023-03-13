@@ -46,4 +46,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'o
     Route::put('/replied/{id}', [TanggapanController::class, 'update'])->name('replied');
     Route::put('/edit/{id}', [TanggapanController::class, 'edit'])->name('edit');
     Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas');
+    Route::get('/petugas/create', [PetugasController::class, 'create'])->name('petugas.create');
+    Route::post('/petugas/store', [PetugasController::class, 'store'])->name('petugas.store');
 });

@@ -88,7 +88,7 @@
                                 Pengaduan</a>
                         </li>
                         <li class="items-center">
-                            <a class="{{request()->is('admin/petugas*') || request()->is('pengaduan/detail*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
+                            <a class="{{request()->is('admin/petugas*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
                                 href="{{Route('admin.petugas')}}"><i class="fas fa-user opacity-75 mr-2 ml-1 text-sm"></i>
                                 Petugas</a>
                         </li>

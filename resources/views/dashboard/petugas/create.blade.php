@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="relative md:ml-52 bg-blueGray-50">
+    <div class="relative md:ml-52 bg-blueGray-50">
     <nav
     class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
     <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
@@ -38,6 +38,8 @@
 <div class="relative bg-blue-900 md:pt-32 pb-10 pt-12">
     <div class="px-4 md:px-10 mx-auto w-full">
         <div>
+
+
         </div>
     </div>
 </div>
@@ -45,65 +47,62 @@
 <div class="px-4 md:px-10 mx-auto w-full -m-24">
     <div class="flex flex-wrap mt-4">
         <div class="w-full mb-12 xl:mb-0 px-4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
-                <div class="flex gap-6">
-                    <input type="text" class="rounded w-full md:w-48 lg:w-56  ml-5 mt-5  " id="Input" onkeyup="myFunction()" placeholder="Search for Petugas" title="Type Name or NIK or email" {{$petugas->count() != 0 ? '' : 'disabled'}}>
-                    <a class="bg-blue-900 mt-5 text-white p-3 rounded-lg ml-auto mr-5" href="{{Route('admin.petugas.create')}}">Tambah Petugas</a>
-                </div>
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg p-5">
+                <form method="POST" action="{{ route('admin.petugas.store') }}">
+                    @csrf
 
-                <div class="block w-full overflow-x-auto rounded-lg px-2">
-                    <table class="items-center w-full bg-transparent border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="px-4 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-3/12">
-                                    Name
-                                </th>
-                                <th class="px-2 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-3/12">
-                                    NIK
-                                </th>
-                                <th class=" bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-2/12">
-                                    Nomor Telpon
-                                </th>
-                                <th class="px-5 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-2/12">
-                                    Email
-                                </th>
-                                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                    Role
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                {{-- @if ($pengaduan) --}}
-                <div class="block w-full overflow-x-auto overflow-y-scroll max-h-[32rem] rounded-lg p-2">
-                    <!-- Projects table -->
-                    <table class="items-center w-full bg-transparent border-collapse" id="Table">
-                        <div>
-                            <tbody class="overflow-y-scroll">
-                                @foreach ($petugas as $item)
-                                <tr class="">
-                                    <td class="border-t-2 pl-4 align-middle text-sm whitespace-nowrap py-3 text-red-500 font-medium w-3/12">
-                                        {{$item->name}} <p class="hidden">{{$item->nik}}{{$item->email}}</p>
-                                    </td>
-                                    <td class="border-t-2 pl-2 align-middle text-sm whitespace-nowrap py-3 font-mediumtext-left w-3/12 truncate">
-                                        {{$item->nik}}
-                                    </td>
-                                    <td class="border-t-2 pr-5 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12">
-                                        {{$item->telp}}
-                                    </td>
-                                    <td class="border-t-2 pl-6 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12 ">
-                                        {{$item->email}}
-                                    </td>
-                                    <td class="border-t-2 px-6 align-middle text-sm whitespace-nowrap py-3 text-left flex gap-2">
-                                        {{$item->role}}
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
+                    <div class="flex gap-6">
+                        <div class="relative w-1/2 mb-3">
+                            <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Name</label>
+                            <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="type name" required autocomplete="name" autofocus class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('email') is-invalid @enderror" style="transition: all 0.15s ease 0s;" />
+                            @error('name')
+                            <span class="text-xs text-red-500 mt-2" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                    </table>
-                </div>
-                {{-- @endif --}}
+
+                        <div class="relative w-1/2 mb-3">
+                            <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">NIK</label>
+                            <input id="nik" type="text" name="nik" value="{{ old('nik') }}" placeholder="type NIK (sesuai KTP atau KK)" required autocomplete="nik" autofocus class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('nik') is-invalid @enderror" style="transition: all 0.15s ease 0s;" />
+                            @error('nik')
+                            <span class="text-xs text-red-500 mt-2" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6">
+                        <div class="relative w-1/2 mb-3">
+                            <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Email</label>
+                            <input type="email" id="email" placeholder="type new email ( use @ )" class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus style="transition: all 0.15s ease 0s;" />
+                            @error('email')
+                            <span class="text-xs text-red-500 mt-2" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="relative w-1/2 mb-3">
+                            <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Password</label>
+                            <input type="password" placeholder="type new password (min. 6 character)" id="password" class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="new-password" style="transition: all 0.15s ease 0s;" />
+                            @error('password')
+                                <span class="text-xs text-red-500 mt-2" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <input type="text" name="role" hidden value="officer">
+                    </div>
+
+
+                    <div class="text-center">
+                        <button class="bg-blue-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded  mr-1 mb-1 w-5/12 " type="submit" style="transition: all 0.15s ease 0s;">
+                            Register
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -154,8 +153,4 @@
     </div> --}}
 </div>
 </div>
-@endsection
-
-@section('js')
-<script src="{{ asset('view/searchFilter.js') }}"></script>
 @endsection

@@ -7,6 +7,7 @@
         <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
             <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold">List Pengaduan</a>
             <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
+                <p class="text-white mr-4 text-sm">halo, {{Auth::user()->name}}</p>
                 <a class="text-blueGray-500 block" href="#" onclick="openDropdown(event,'user-dropdown')">
                     <div class="items-center flex">
                         <span
@@ -47,7 +48,8 @@
         <div class="flex flex-wrap mt-4">
             <div class="w-full mb-12 xl:mb-0 px-4">
                 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-                    <div class="flex mx-5 my-5 border-2 w-fit rounded">
+                    <p class="ml-5 mt-2">status</p>
+                    <div class="flex mx-5 my-1 border-2 w-fit rounded">
                         <a href="{{Route('admin.all.list')}}">
                             <div class="p-1 pr-2 border-r-2 rounded-sm">
                                 Report
@@ -62,6 +64,8 @@
                             Replied
                         </div>
                     </div>
+                    <input type="text" class="rounded w-full md:w-48 lg:w-56  ml-5 my-3.5 " id="Input" onkeyup="myFunctionPengaduan()" placeholder="Search for Pengaduan" title="Type pengaduan or name or category" {{$pengaduan->count() != 0 ? '' : 'disabled'}}>
+
                     <div class="block w-full overflow-x-auto rounded-lg px-2">
                         <table class="items-center w-full bg-transparent border-collapse">
                             <thead>
@@ -91,9 +95,9 @@
                         </table>
                     </div>
                     {{-- @if ($pengaduan) --}}
-                    <div class="block w-full overflow-x-auto overflow-y-scroll max-h-[32rem] rounded-lg p-2">
+                    <div class="block w-full overflow-x-auto overflow-y-scroll max-h-[30rem] rounded-lg p-2">
                         <!-- Projects table -->
-                        <table class="items-center w-full bg-transparent border-collapse">
+                        <table class="items-center w-full bg-transparent border-collapse" id="Table">
                             <div>
                                 <tbody class="overflow-y-scroll">
                                     @foreach ($pengaduan as $item)
@@ -105,7 +109,7 @@
 
                                         <td
                                             class="border-t-2 pl-3 align-middle text-sm whitespace-nowrap py-3 font-mediumtext-left w-5/12 truncate">
-                                            {{$item->judul}}
+                                            {{$item->judul}} <p class="hidden">{{$item->isi}}{{$item->user->name}}{{$item->category}}</p>
                                         </td>
 
                                         <td
@@ -188,5 +192,5 @@
 @endsection
 
 @section('js')
-<script src="{{asset('view/sortFilter.js')}}"></script>
+<script src="{{asset('view/searchFilter.js')}}"></script>
 @endsection
