@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('tanggapan_id');
             $table->foreign('tanggapan_id')->references('id')->on('tanggapans');
             $table->string('document');
-            $table->enum('type', ['post', 'report']);
             $table->timestamps();
         });
     }

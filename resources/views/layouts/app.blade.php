@@ -92,11 +92,11 @@
                                 href="{{Route('admin.petugas')}}"><i class="fas fa-user opacity-75 mr-2 ml-1 text-sm"></i>
                                 Petugas</a>
                         </li>
-                        <li class="items-center">
-                            <a class="text-gray-400 {{--hover:text-gray-600--}}text-xs uppercase py-3 font-bold block"
+                        {{-- <li class="items-center">
+                            <a class="text-gray-400 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                                 href="//"><i class="fas fa-tv opacity-75 mr-2 text-sm" disabled></i>
                                 Berita</a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <hr class="my-4 md:min-w-full" />
                     

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Services\PengaduanService;
@@ -68,11 +69,20 @@ class PengaduanController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new PDF.
      */
-    public function create()
+    public function pdf($id)
     {
-        //
+        $pengaduan = $this->pengaduanService->getPengaduanById($id);
+        $image = $this->imageService-> handleGetAllImage();
+
+        view()->share([
+            'pengaduan' => $pengaduan,
+            'image' => $image,
+        ]);
+        $pdf = PDF::loadview('export-pdf');
+        // return view ('export-pdf');
+        return $pdf->download('pengaduan-'.$pengaduan->id.'-'.$pengaduan->user->nik.'.pdf');
     }
 
     /**

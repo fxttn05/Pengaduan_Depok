@@ -54,7 +54,7 @@
                     </div>   
                     
                     <div class="w-full bg-white px-8 pt-4 pb-8 rounded">
-                        <p class="text-lg font-medium mb-4">Galeri</p>
+                        <p class="text-lg font-medium mb-4 {{$image ? '' : 'hidden'}}">Galeri</p>
                         <div class="overflow-x-auto px-2">
                             <div class="flex gap-4 ">
                                 @forelse($image->where('pengaduan_id', $pengaduan->id) as $key) 
@@ -74,11 +74,19 @@
                             @method('put')
                             <p class="text-lg font-medium mb-6">Tanggapan</p>
                             <div class="my-3">
-                                <p class="Tanggapan" class="mb-4 mt-8">Masukkan tanggapan</p>
+                                <p for="tanggapan" class="mb-4 mt-8">Masukkan tanggapan</p>
                                 <textarea name="tanggapan" rows="3" cols="80" class="border-1 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Sapa dengan baik lalu ketikan solusi terbaikmu" required></textarea>
                             </div>
+
+                            <p for="image" class="mb-2 mt-4">Image</p>
                             <div class="my-3 flex">
-                                <input accept="image/*" name="image[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5 border-2" name="images[]" placeholder="bukti foto" multiple>
+                                <input accept="image/*" name="image[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5 border-2" name="images[]" placeholder="bukti foto" multiple accept="image/*">
+                                <img id="img" src="#" alt="" class="mx-5 max-h-20" />
+                            </div>
+
+                            <p for="image" class="mb-2 mt-4">Laporan</p>
+                            <div class="my-3 flex">
+                                <input name="document[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5 border-2" name="document[]" placeholder="bukti foto" multiple accept="appdf">
                                 <img id="img" src="#" alt="" class="mx-5 max-h-20" />
                             </div>
 

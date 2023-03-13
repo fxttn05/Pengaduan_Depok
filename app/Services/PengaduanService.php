@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Carbon\Carbon;
 use App\Models\{
+    Document,
     Pengaduan,
     Image
 };
@@ -13,10 +14,11 @@ use DB;
 
 class PengaduanService
 {
-    public function __construct(Pengaduan $pengaduan, Image $image)
+    public function __construct(Pengaduan $pengaduan, Image $image, Document $document)
     {
         $this->pengaduan = $pengaduan;
         $this->image = $image;
+        $this->document = $document;
     }
 
     public function handleGetAllPengaduan()
@@ -126,6 +128,16 @@ class PengaduanService
             $this->image->create([
                 'pengaduan_id' => $pengaduan->id,
                 'image' => $filename
+            ]);
+        }
+
+        foreach($request->file('document') as $document) {
+            $file = str_replace(' ','_',$document->getClientOriginalName());
+            $filename = Carbon::now()->format('Hisdmy').'_'.$file;
+            $document->move(public_path('document'), $filename);
+            $this->document->create([
+                'pengaduan_id' => $pengaduan->id,
+                'document' => $document
             ]);
         }
 

@@ -178,7 +178,7 @@
         </div>
     </div>
     <div class="px-4 md:px-10 mx-auto w-full -m-24">
-            <div class="w-full px-4">
+            {{-- <div class="w-full px-4">
                 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
                     <div class="rounded-t mb-0 px-4 py-3 border-0">
                         <div class="flex flex-wrap items-center">
@@ -338,7 +338,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         <footer class="block py-4">
             <div class="container mx-auto px-4">
                 <hr class="mb-4 border-b-1 border-blueGray-200" />

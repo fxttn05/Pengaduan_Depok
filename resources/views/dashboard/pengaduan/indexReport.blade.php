@@ -98,26 +98,21 @@
                                 <tbody class="overflow-y-scroll">
                                     @foreach ($pengaduan as $item)
                                     <tr class="">
-                                        <td
-                                            class="border-t-2 pl-4 align-middle text-sm whitespace-nowrap py-3 text-red-500 font-medium w-1/12">
+                                        <td class="border-t-2 pl-4 align-middle text-sm whitespace-nowrap py-3 text-red-500 font-medium w-1/12">
                                             Report
                                         </td>
 
-                                        <td
-                                            class="border-t-2 pl-2 align-middle text-sm whitespace-nowrap py-3 font-mediumtext-left w-5/12 truncate">
+                                        <td class="border-t-2 pl-2 align-middle text-sm whitespace-nowrap py-3 font-mediumtext-left w-5/12 truncate">
                                             {{$item->judul}}
                                         </td>
 
-                                        <td
-                                            class="border-t-2 pr-4 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12">
+                                        <td class="border-t-2 pr-4 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12">
                                             {{$item->user->name}}
                                         </td>
-                                        <td
-                                            class="border-t-2 pl-6 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12 ">
+                                        <td class="border-t-2 pl-6 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12 ">
                                             {{date('l, d F Y', strtotime($item->created_at))}}
                                         </td>
-                                        <td
-                                            class="border-t-2 px-6 align-middle text-sm whitespace-nowrap py-3 text-left flex gap-2">
+                                        <td class="border-t-2 px-6 align-middle text-sm whitespace-nowrap py-3 text-left flex gap-2">
                                             <button type="button" class="bg-blue-900 p-2 text-white rounded" data-te-toggle="modal" data-te-target="#verificationModal-{{$item->id}}" data-te-ripple-init data-te-ripple-color="light" title="Verification"><i class="fas fa-check-circle px-1 text-sm"></i></button>
 
                                             <a href="{{Route('pengaduan.detil', $item->id)}}"

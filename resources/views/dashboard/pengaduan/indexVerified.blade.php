@@ -128,6 +128,10 @@
                                             <a href="{{Route('pengaduan.detil', $item->id)}}"
                                                 class="bg-blue-900 p-2 text-white rounded" title="See detail"><i
                                                     class="fas fa-eye text-sm"></i></a>
+                                                    
+                                            <a href="{{Route('pengaduan.detil.pdf', $item->id)}}"
+                                                class="bg-blue-900 px-3 py-2 text-white rounded" title="Export PDF"><i
+                                                    class="fas fa-file-pdf text-sm"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

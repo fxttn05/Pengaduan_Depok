@@ -34,6 +34,7 @@ Route::group(['prefix' => 'pengaduan', 'as' => 'pengaduan.'], function () {
     Route::get('/me/list', [PengaduanController::class, 'list'])->name('list'); 
     Route::put('/verified/{id}', [PengaduanController::class, 'verified'])->name('verification')->middleware('auth', 'officer');
     Route::get('/detail/{id}', [PengaduanController::class, 'detail'])->name('detil')->middleware('auth', 'officer');
+    Route::get('/detail/pdf/{id}', [PengaduanController::class, 'pdf'])->name('detil.pdf')->middleware('auth', 'officer');
 });
 
 
