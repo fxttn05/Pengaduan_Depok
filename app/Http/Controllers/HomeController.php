@@ -9,6 +9,7 @@ use App\Services\ImageService;
 use App\Services\PengaduanService;
 use App\Services\TanggapanService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -17,12 +18,13 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(PengaduanService $pengaduanService, ImageService $imageService, TanggapanService $tanggapanService)
+    public function __construct(PengaduanService $pengaduanService, ImageService $imageService, TanggapanService $tanggapanService, User $user)
     {
         $this->middleware('auth');
         $this->pengaduanService = $pengaduanService;
         $this->imageService = $imageService;
         $this->tanggapanService = $tanggapanService;
+        $this->user = $user;
     }
 
     /**
@@ -51,10 +53,13 @@ class HomeController extends Controller
         
         if(Auth::user()->role == 'public'){
 
+            
             $publicPengaduan = $this->pengaduanService->handleGetAllPublicPengaduan();
+            $privatePengaduan = $this->pengaduanService->handleGetPrivatePengaduan();
             $image = $this->imageService-> handleGetAllImage();
             return view('user.landingpage', [
                 'publicPengaduan' => $publicPengaduan,
+                'privatePengaduan' => $privatePengaduan,
                 'image' => $image,
             ]);
 
@@ -77,7 +82,18 @@ class HomeController extends Controller
     
     public function profileEdit(Request $request, $id)
     {
-        User::find($id)->update($request->all());
+        $user = $request->validate([
+            'name' => 'required|string|max:100',
+            'nik' => 'required|string|max:17',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|min:6|string',
+            'telp' => 'nullable|max:100|string'
+        ]);
+        $this->user->find($id)->update($user);
+
+        $user['telp'] = $request->telp;
+        $user['password'] = Hash::make($request->password);
+
         return redirect()->back();
     }
         // if (Auth::user()->role == 'officer' || 'admin') {

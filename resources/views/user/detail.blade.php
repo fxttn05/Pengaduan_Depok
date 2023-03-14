@@ -155,7 +155,8 @@
                 <p class="text-xs md:text-sm font-light">{{$pengaduan->created_at->format('l, d F Y')}}</p>
             </div>
             <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($pengaduan->pengaduan_date))}}</p>
-            <p class="text-lg mb-6">{{$pengaduan->isi}}</p>
+            <p class="text-lg mb-2">{{$pengaduan->isi}}</p>
+            <p class="text-base mb-6">Alamat : {{$pengaduan->alamat}}</p>
             @if($pengaduan->status == '1.report')
             <p class="text-xs">status : Report</p>
             @elseif($pengaduan->status == '2.verified')

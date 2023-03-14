@@ -4,9 +4,9 @@
 <div class="relative md:ml-52 bg-blueGray-50">
     <nav class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
         <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-            <p class="text-white mr-4 text-sm">halo, {{Auth::user()->name}}</p>
-            <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold">Memberi Tanggapan</a>
+            <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold">Detai Tanggapan</a>
             <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
+                <p class="text-white mr-4 text-sm">halo, {{Auth::user()->name}}</p> 
                 <a class="text-blueGray-500 block" href="#" onclick="openDropdown(event,'user-dropdown')">
                     <div class="items-center flex">
                         <span class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
@@ -81,7 +81,8 @@
                     
                     <p class="text-sm font-light mb-4">by : {{$item->user->name}}</p>
                     <p class="text-sm md:text-base font-light mb-2">Date : {{date('l, d F Y', strtotime($item->tanggapan_date))}}</p>
-                    <p class="text-lg mb-6">{{$item->tanggapan}}</p>
+                    <p class="text-lg mb-2">{{$pengaduan->isi}}</p>
+                    <p class="text-base mb-6">Alamat : {{$pengaduan->alamat}}</p>
                     <div class="overflow-x-auto px-2">
                         <div class="flex gap-4">
                             @forelse($image->where('tanggapan_id', $item->id) as $key) 
@@ -91,6 +92,17 @@
                                     </div>
                             @empty
                             @endforelse   
+                        </div>
+                    </div>                    
+                    <div class="overflow-x-auto px-2 pt-10">
+                        <div class="flex gap-4">
+                            @forelse($document->where('tanggapan_id', $item->id) as $key)
+                            <div class="border p-2 rounded-lg">
+                                <a href="{{asset('document/'.$key->document)}}" target="_blank">{{$key->document}}</a>
+                            </div>
+                            @empty
+                                
+                            @endforelse
                         </div>
                     </div>
                         

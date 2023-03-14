@@ -17,10 +17,15 @@ class Officer
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role == "officer" || Auth::user()->role == "admin") {
-            return $next($request);
+        if (Auth::user()->status == "active") {
+            if (Auth::user()->role == "officer" || Auth::user()->role == "admin") {
+                return $next($request);
+            } else {
+                null;
+            }
         } else {
             abort(403);
         }
+
     }
 }

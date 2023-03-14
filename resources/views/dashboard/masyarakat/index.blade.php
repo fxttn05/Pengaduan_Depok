@@ -47,8 +47,8 @@
         <div class="w-full mb-12 xl:mb-0 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
                 <div class="flex gap-6">
-                    <input type="text" class="rounded w-full md:w-48 lg:w-56  ml-5 mt-5  " id="Input" onkeyup="myFunction()" placeholder="Search for Petugas" title="Type Name or NIK or email" >
-                    <a class="bg-blue-900 mt-5 text-white p-3 rounded-lg ml-auto mr-5" href="{{Route('admin.petugas.create')}}">Tambah Petugas</a>
+                    <input type="text" class="rounded w-full md:w-48 lg:w-56  ml-5 mt-5  " id="Input" onkeyup="myFunction()" placeholder="Search for Masyarakat" title="Type Name or NIK or email" >
+                    {{-- <a class="bg-blue-900 mt-5 text-white p-3 rounded-lg ml-auto mr-5" href="{{Route('admin.masyarakat.create')}}">Tambah Masyarakat</a> --}}
                 </div>
 
                 <div class="block w-full overflow-x-auto rounded-lg px-2">
@@ -58,7 +58,7 @@
                                 <th class="px-4 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-3/12">
                                     Name
                                 </th>
-                                <th class="px-2 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-2/12">
+                                <th class="px-2 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-3/12">
                                     NIK
                                 </th>
                                 <th class=" bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-2/12">
@@ -70,7 +70,7 @@
                                 <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-1/12">
                                     Role
                                 </th>
-                                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-2/12">
+                                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left w-1/12">
                                     
                                 </th>
                             </tr>
@@ -83,12 +83,12 @@
                     <table class="items-center w-full bg-transparent border-collapse" id="Table">
                         <div>
                             <tbody class="overflow-y-scroll">
-                                @foreach ($petugas->where('status', 'active') as $item)
+                                @foreach ($masyarakat as $item)
                                 <tr class="">
-                                    <td class="border-t-2 pl-4 align-middle text-sm whitespace-nowrap py-3 text-blue-800 font-medium w-3/12">
+                                    <td class="border-t-2 pl-4 align-middle text-sm whitespace-nowrap py-3 text-blue-900 font-medium w-3/12">
                                         {{$item->name}} <p class="hidden">{{$item->nik}}{{$item->email}}</p>
                                     </td>
-                                    <td class="border-t-2 pl-2 align-middle text-sm whitespace-nowrap py-3 font-mediumtext-left w-2/12 truncate">
+                                    <td class="border-t-2 pl-2 align-middle text-sm whitespace-nowrap py-3 font-mediumtext-left w-3/12 truncate">
                                         {{$item->nik}}
                                     </td>
                                     <td class="border-t-2 pr-5 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12">
@@ -97,18 +97,12 @@
                                     <td class="border-t-2 pl-6 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12 ">
                                         {{$item->email}}
                                     </td>
-                                    <td class="border-t-2 px-6 align-middle text-sm whitespace-nowrap py-3 text-left w-1/12 {{Auth::user()->role == 'admin' ? 'text-green-500' : 'text-black'}}">
+                                    <td class="border-t-2 px-6 align-middle text-sm whitespace-nowrap py-3 text-left w-1/12">
                                         {{$item->role}}
                                     </td>
-                                    <td class="border-t-2 px-6 align-middle text-sm whitespace-nowrap py-3 text-left w-2/12 flex gap-2">
-                                        <a href="{{route('admin.petugas.edit', $item->id)}}" class="text-xs bg-blue-900 p-2 text-white rounded-md border-t-2" title="edit data"><i class="fas fa-pencil-alt "></i></a>
-                                        <a href="javascript:$('#form-inactive-{{ $item->id }}').submit();" class="text-xs bg-blue-900 p-2 text-white rounded-md border-t-2" title="inactive petugas"><i class="fas fa-trash"></i></a>
-                                        
-                                        <form action="{{route('admin.petugas.destroy', $item->id)}}" method="POST" id="form-inactive-{{$item->id}}">
-                                            @csrf
-                                            @method('delete')
-                                            {{-- <input class="hidden" type="text" name="status" value="inactive"> --}}
-                                        </form>
+                                    <td class="border-t-2 px-6 align-middle text-sm whitespace-nowrap py-3 text-left w-1/12 flex gap-2">
+                                        <a href="{{route('admin.petugas.edit', $item->id)}}" class="text-xs bg-blue-900 p-2 text-white rounded-md"><i class="fas fa-pencil-alt"></i></a>
+                                        {{-- <a href="{{route('admin.petugas.show', $item->id)}}" class="text-xs bg-blue-900 p-2 text-white rounded-md"><i class="fas fa-eye"></i></a> --}}
                                     </td>
                                 </tr>
                                 @endforeach

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <style>
         .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -87,13 +88,23 @@
                                 href="{{Route('admin.all.list')}}"><i class="fas fa-file opacity-75 mr-2 ml-1 text-sm"></i>
                                 Pengaduan</a>
                         </li>
-                        @if(Route::user()->role == 'admin')
+                        <li class="items-center">
+                            <a class="{{request()->is('admin/laporan*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
+                                href="{{Route('admin.laporan.index')}}"><i class="fas fa-file-pdf opacity-75 mr-2 ml-1 text-sm"></i>
+                                Laporan</a>
+                        </li>
+                        @if(Auth::user()->role == 'admin')
                         <li class="items-center">
                             <a class="{{request()->is('admin/petugas*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
                                 href="{{Route('admin.petugas')}}"><i class="fas fa-user opacity-75 mr-2 ml-1 text-sm"></i>
                                 Petugas</a>
                         </li>
                         @endif
+                        <li class="items-center">
+                            <a class="{{request()->is('admin/masyarakat*') ? 'text-blue-900 hover:text-blue-900' : 'text-gray-700 hover:text-gray-900'}} text-xs uppercase py-3 font-bold block"
+                                href="{{Route('admin.masyarakat')}}"><i class="fas fa-user opacity-75 mr-2 ml-1 text-sm"></i>
+                                Masyarakat</a>
+                        </li>
                         {{-- <li class="items-center">
                             <a class="text-gray-400 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                                 href="//"><i class="fas fa-tv opacity-75 mr-2 text-sm" disabled></i>
@@ -147,6 +158,8 @@
         }
     
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
     <script type="text/javascript">
         /* Sidebar - Side navigation menu on mobile/responsive mode */
         function toggleNavbar(collapseID) {

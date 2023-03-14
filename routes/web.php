@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\TanggapanController;
+use App\Http\Controllers\MasyarakatController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +47,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'o
     Route::get('/tanggapan/{id}', [TanggapanController::class, 'show'])->name('tanggapan');
     Route::put('/replied/{id}', [TanggapanController::class, 'update'])->name('replied');
     Route::put('/edit/{id}', [TanggapanController::class, 'edit'])->name('edit');
+
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::post('/getLaporan', [LaporanController::class, 'getLaporan'])->name('laporan.get.laporan');
+    Route::get('/laporan/cetak/{from}/{to}', [LaporanController::class, 'cetakLaporan'])->name('laporan.cetak.laporan');
+
+    // petugas
     Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas');
     Route::get('/petugas/create', [PetugasController::class, 'create'])->name('petugas.create');
     Route::post('/petugas/store', [PetugasController::class, 'store'])->name('petugas.store');
+    Route::get('/petugas/edit/{id}', [PetugasController::class, 'edit'])->name('petugas.edit');
+    Route::put('/petugas/update/{id}', [PetugasController::class, 'update'])->name('petugas.update');
+    Route::delete('/petugas/deactive/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
+
+    // masyarakat
+    Route::get('/masyarakat', [MasyarakatController::class, 'index'])->name('masyarakat');
+    Route::get('/masyarakat/edit/{id}', [PetugasController::class, 'edit'])->name('masyarakat.edit');
+    Route::put('/masyarakat/update/{id}', [PetugasController::class, 'update'])->name('masyarakat.update');
+    Route::delete('/masyarakat/deactive{id}', [PetugasController::class, 'destroy'])->name('masyarakat.destroy');
 });

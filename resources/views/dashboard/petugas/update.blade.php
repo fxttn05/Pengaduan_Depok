@@ -5,7 +5,7 @@
     <nav
     class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
     <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-        <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold">TAMBAH DATA PETUGAS</a>
+        <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold">EDIT DATA PETUGAS {{$petugas->name}}</a>
         <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
             <p class="text-white mr-4 text-sm">halo, {{Auth::user()->name}}</p>
             <a class="text-blueGray-500 block" href="#" onclick="openDropdown(event,'user-dropdown')">
@@ -48,13 +48,13 @@
     <div class="flex flex-wrap mt-4">
         <div class="w-full mb-12 xl:mb-0 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg p-5">
-                <form method="POST" action="{{ route('admin.petugas.store') }}">
+                <form method="POST" action="{{ route('admin.petugas.update', $petugas->id) }}">
                     @csrf
-
+                    @method('put')
                     <div class="flex gap-6">
                         <div class="relative w-1/2 mb-3">
                             <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Name</label>
-                            <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="type name" required autocomplete="name" autofocus class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('email') is-invalid @enderror" style="transition: all 0.15s ease 0s;" />
+                            <input id="name" type="text" name="name" value="{{ $petugas->name }}" placeholder="type name" required autocomplete="name" autofocus class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('email') is-invalid @enderror" style="transition: all 0.15s ease 0s;" />
                             @error('name')
                             <span class="text-xs text-red-500 mt-2" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
 
                         <div class="relative w-1/2 mb-3">
                             <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">NIK</label>
-                            <input id="nik" type="text" name="nik" value="{{ old('nik') }}" placeholder="type NIK (sesuai KTP atau KK)" required autocomplete="nik" autofocus class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('nik') is-invalid @enderror" style="transition: all 0.15s ease 0s;" />
+                            <input id="nik" type="text" name="nik" value="{{ $petugas->nik }}" placeholder="type NIK (sesuai KTP atau KK)" required autocomplete="nik" autofocus class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('nik') is-invalid @enderror" style="transition: all 0.15s ease 0s;" />
                             @error('nik')
                             <span class="text-xs text-red-500 mt-2" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -86,7 +86,7 @@
                     <div class="flex gap-6">
                         <div class="relative w-1/2 mb-3">
                             <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Email</label>
-                            <input type="email" id="email" placeholder="type new email ( use @ )" class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus style="transition: all 0.15s ease 0s;" />
+                            <input type="email" id="email" placeholder="type new email ( use @ )" class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ $petugas->email }}" required autocomplete="email" autofocus style="transition: all 0.15s ease 0s;" />
                             @error('email')
                             <span class="text-xs text-red-500 mt-2" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -96,7 +96,7 @@
 
                         <div class="relative w-1/2 mb-3">
                             <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Password</label>
-                            <input type="password" placeholder="type new password (min. 6 character)" id="password" class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="new-password" style="transition: all 0.15s ease 0s;" />
+                            <input type="password" placeholder="type new password (min. 6 character)" id="password" class="border-0 px-3 py-3 placeholder-gray-800 placeholder-opacity-40 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full form-control @error('password') is-invalid @enderror" name="password" value="{{ $petugas->password }}" required autocomplete="new-password" style="transition: all 0.15s ease 0s;" />
                             @error('password')
                                 <span class="text-xs text-red-500 mt-2" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -109,7 +109,7 @@
 
                     <div class="text-center">
                         <button class="bg-blue-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded  mr-1 mb-1 w-5/12 " type="submit" style="transition: all 0.15s ease 0s;">
-                            Register
+                            Submit
                         </button>
                     </div>
                 </form>

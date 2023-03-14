@@ -14,11 +14,10 @@ use DB;
 
 class PengaduanService
 {
-    public function __construct(Pengaduan $pengaduan, Image $image, Document $document)
+    public function __construct(Pengaduan $pengaduan, Image $image)
     {
         $this->pengaduan = $pengaduan;
         $this->image = $image;
-        $this->document = $document;
     }
 
     public function handleGetAllPengaduan()
@@ -88,6 +87,12 @@ class PengaduanService
     //     return $p;
     // }
 
+    public function handleGetPrivatePengaduan()
+    {
+        $p = $this->pengaduan->where('is_public', 0)->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        return $p;
+    }
+
     public function handleGetAllPublicPengaduan()
     {
         // dd($this->pengaduan->where('is_public', 1)->orderBy('created_at', 'desc')->get());
@@ -109,6 +114,8 @@ class PengaduanService
             'category' => 'required',
             'pengaduan_date' => 'required',
             'is_public' => 'required',
+            'alamat' => 'nullable|max:500',
+            'image[]' => 'nullable|png,jpg,jpeg|max:5000'
         ]);
 
         $pengaduan = $this->pengaduan->create([
@@ -116,8 +123,9 @@ class PengaduanService
             'judul' => $request->judul,
             'isi' => $request->isi,
             'category' => $request->category,
-            'pengaduan_date' => $request->pengaduan_date ,
-            'status' => 'report',
+            'pengaduan_date' => $request->pengaduan_date,
+            'alamat' => $request->alamat,
+            'status' => '1.report',
             'is_public' => $request->is_public,
         ]);
 

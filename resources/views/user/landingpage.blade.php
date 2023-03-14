@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <title>Pengaduan Depok</title>
     <style>
@@ -149,7 +150,10 @@
             </div>
         </div>
 
+        @guest
         <div class="pb-20 bg-blue-900 -mt-20 h-[55rem] lg:h-[35rem]" >
+        @endguest
+        <div class="pb-20 bg-blue-900 -mt-20 h-[65rem] lg:h-[55rem]" >
             <div class="lg:container mx-auto px-6 lg:px-2">
                 <div class="flex-row lg:flex relative">
 
@@ -193,6 +197,12 @@
                                                     placeholder="Tulis Laporan anda disini. Format: penjelasan dan lokasi secara spesifik"></textarea>
                                             </div>
                                             <div class="relative w-full mb-1">
+                                                <label for="" class="text-xs">Alamat Kejadian</label>
+                                                <input name="alamat" type="text"
+                                                    class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                                    placeholder="Tuliskan alamat tempat kejadian (opsional)">
+                                            </div>
+                                            <div class="relative w-full mb-1">
                                                 <label for="" class="text-xs">kategori</label>
                                                 <input name="category" type="text"
                                                     class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
@@ -200,12 +210,12 @@
                                             </div>
                                             <div class="relative w-full mb-4 ">
                                                 <label for="" class="text-xs">tanggal kejadian</label>
-                                                <input name="pengaduan_date" type="date"
+                                                <input id="datePickerId" name="pengaduan_date" type="date"
                                                     class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-full"
                                                     placeholder="tanggalkejadian">
                                             </div>
                                             <div class="relative w-full mb-1 flex">
-                                                <input accept="image/*" name="image[]" id="imageInput" required type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5" name="images[]" placeholder="bukti foto" multiple>
+                                                <input accept="image/*" name="image[]" id="imageInput" type="file" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadwow focus:outline-none focus:ring w-3/5" name="images[]" placeholder="bukti foto" multiple>
                                                 <img id="img" src="#" alt="" class="mx-5 max-h-20" />
                                             </div>
 
@@ -235,7 +245,7 @@
                             <div class="px-4 py-5 flex-auto h-96 align-middle">
                                 <h6 class="text-xl font-semibold mb-5">Pengaduan Terbaru</h6>
                                 {{-- <form id="lets_search" action="" style="" class="mx-auto mt-3"> --}}
-                                    <input type="text" class="rounded w-full md:w-36 lg:w-48" id="Input" onkeyup="myFunction()" placeholder="Search for Pengaduan or Category" title="Type Pengaduan or Category" {{$publicPengaduan->count() != 0 ? '' : 'disabled'}}>
+                                    <input type="text" class="rounded w-full md:w-36 lg:w-48" id="Input" onkeyup="myFunction()" placeholder="Search for Pengaduan or Category" title="Type Pengaduan or Category" {{count($publicPengaduan) != 0 ? '' : 'disabled'}}>
                                     
                                     <div class="min-h-48 max-h-64 overflow-y-auto overflow-x-hidden mt-3 border-b-2 border-t-2">
                                         <table class="bg-transparent" id="Table">
@@ -561,6 +571,11 @@
 
 </body>
 <script src="{{ asset('view/searchFilter.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+datePickerId.max = new Date().toISOString().split("T")[0];
+</script>
 <script>
     function toggleNavbar(collapseID) {
         document.getElementById(collapseID).classList.toggle("hidden");

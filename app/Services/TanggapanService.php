@@ -6,7 +6,8 @@ use Carbon\Carbon;
 use App\Models\{
     Image,
     Tanggapan, 
-    Pengaduan
+    Pengaduan,
+    Document
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +15,12 @@ use DB;
 
 class TanggapanService
 {
-    public function __construct(Tanggapan $tanggapan, Pengaduan $pengaduan, Image $image)
+    public function __construct(Tanggapan $tanggapan, Pengaduan $pengaduan, Image $image, Document $document)
     {
         $this->tanggapan = $tanggapan;
         $this->pengaduan =  $pengaduan;
         $this->image =  $image;
+        $this->document = $document;
     }
 
 
@@ -36,6 +38,8 @@ class TanggapanService
             'pengaduan_id' => $id,
             'tanggapan' => $request->tanggapan,
             'tanggapan_date' => Carbon::now()->format('Y-m-d'),
+            'image[]' => 'nullable|png,jpg,jpeg|max:5000',
+            'document[]' => 'nullable|pdf|max:10000'
         ]);
 
         $this->pengaduan->find($id)->update([

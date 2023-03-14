@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('judul');
             $table->text('isi');
+            $table->text('alamat')->nullable();
             $table->string('category');
             $table->date('pengaduan_date');
             $table->enum('status', ['1.report', '2.verified', '3.replied']);

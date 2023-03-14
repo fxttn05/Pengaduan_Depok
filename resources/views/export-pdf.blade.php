@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pengaduan {{$pengaduan->user->name}}/{{$pengaduan->user->nik}}/{{$pengaduan->id}}</title>
+    <title>Pengaduan_{{str_replace(' ', '_', $pengaduan->user->name, )}}/{{$pengaduan->user->nik}}/{{$pengaduan->id}}</title>
     <link rel="stylesheet" href="../resources/css/pdf.css">
     <style>
 

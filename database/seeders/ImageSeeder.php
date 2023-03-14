@@ -14,8 +14,8 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        $pengaduan_id = range(1, 400);
-        for($i= 1; $i <=550; $i++){
+        $pengaduan_id = range(1, 250);
+        for($i= 1; $i <=300; $i++){
             Image::create([
                 'id' => $i,
                 'pengaduan_id' => $pengaduan_id[array_rand($pengaduan_id)],

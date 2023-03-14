@@ -22,7 +22,7 @@ class PengaduanSeeder extends Seeder
         }
         $judul = ['Terjadi sebuah kerusakan jalan', 'Sampah menumpuk di bahu jalan', 'Tiang lampu hampir rubuh', 'terjadi kerusuhan di gang sempit','tetangga terlalu berisik saat malam hari', 'aktivitas tidak wajar dilakukan sekelompok orang di daerah A','merusak fasilitas umum','tabrakan terjadi di jalan raya A', 'Pembuatan KTP yang begitu lama', 'Anak hilang', 'Kehilangan dompet di daerah A', 'Motor hilang di daerah A', 'orang terperosok ke dalam saluran air', 'angkot ugal ugalan', 'balap liar'];
         
-        for($i= 1; $i <=400; $i++)
+        for($i= 1; $i <=250; $i++)
         {
             Pengaduan::create([
                 'id' => $i,

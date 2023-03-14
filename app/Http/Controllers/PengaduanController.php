@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DocumentService;
 use PDF;
 use Illuminate\Http\Request;
 use App\Services\ImageService;
@@ -10,11 +11,12 @@ use App\Services\TanggapanService;
 
 class PengaduanController extends Controller
 {
-    public function __construct(PengaduanService $pengaduanService, ImageService $imageService, TanggapanService $tanggapanService)
+    public function __construct(PengaduanService $pengaduanService, ImageService $imageService, TanggapanService $tanggapanService, DocumentService $documentService)
     {
         $this->pengaduanService = $pengaduanService;
         $this->imageService = $imageService;
         $this->tanggapanService = $tanggapanService;
+        $this->documentService = $documentService;
     }
     /**
      * Display a listing of the resource.
@@ -101,11 +103,14 @@ class PengaduanController extends Controller
     {
         $pengaduan = $this->pengaduanService->getPengaduanById($id);
         $image = $this->imageService-> handleGetAllImage();
+        $document = $this->documentService->handleGetAllDocument();
         $tanggapan = $this->tanggapanService->handleGetTanggapanByPengaduan($id);
+        
         return view('user.detail', [
             'pengaduan' => $pengaduan,
             'image' => $image,
-            'tanggapan' => $tanggapan
+            'tanggapan' => $tanggapan,
+            'document' => $document
         ]);
     }
 
@@ -113,11 +118,13 @@ class PengaduanController extends Controller
     {
         $pengaduan = $this->pengaduanService->getPengaduanById($id);
         $image = $this->imageService-> handleGetAllImage();
+        $document = $this->documentService->handleGetAllDocument();
         $tanggapan = $this->tanggapanService->handleGetTanggapanByPengaduan($id);
         return view('dashboard.pengaduan.detail', [
             'pengaduan' => $pengaduan,
             'image' => $image,
-            'tanggapan' => $tanggapan
+            'tanggapan' => $tanggapan,
+            'document' => $document
         ]);
     }
 
