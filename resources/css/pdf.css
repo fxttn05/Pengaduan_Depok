@@ -1,6 +1,6 @@
 body{
-    margin-left: 3rem; 
-    margin-right: 3rem; 
+    margin-left: 2.75rem; 
+    margin-right: 2.75rem; 
     margin-top: 2rem;
 }
 .top{
@@ -10,6 +10,12 @@ body{
 .img-logo{
     width: 10rem; 
     height: 7.5rem
+}
+
+.photo-item{
+    margin: 0 auto;
+    padding: 0rem 2rem ;
+
 }
 
 

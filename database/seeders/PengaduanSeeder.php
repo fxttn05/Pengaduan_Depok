@@ -15,14 +15,14 @@ class PengaduanSeeder extends Seeder
     public function run()
     {
         $is_public = [1, 0];
-        $user_id = [3, 4, 5, 6];
+        $user_id = [3, 4, 5];
         // $status = ['1.report', '2.verified', '3.replied'];
         foreach (range(1,5) as $number) {
             $sub[] = $number; 
         }
-        $judul = ['Terjadi sebuah kerusakan jalan', 'Sampah menumpuk di bahu jalan', 'Tiang lampu hampir rubuh', 'terjadi kerusuhan di gang sempit','tetangga terlalu berisik saat malam hari', 'aktivitas tidak wajar dilakukan sekelompok orang di daerah A','merusak fasilitas umum','tabrakan terjadi di jalan raya A', 'Pembuatan KTP yang begitu lama', 'Anak hilang', 'Kehilangan dompet di daerah A', 'Motor hilang di daerah A', 'orang terperosok ke dalam saluran air', 'angkot ugal ugalan', 'balap liar'];
+        $judul = ['Kerusakan jalan', 'Sampah menumpuk di bahu jalan', 'Tiang lampu hampir rubuh','tetangga terlalu berisik saat malam hari', 'Aktivitas tidak wajar dilakukan sekelompok orang di daerah A','Fasilitas umum rusak','Tabrakan terjadi di jalan raya A', 'Pembuatan KTP yang begitu lama', 'Anak hilang', 'Kehilangan dompet di daerah A', 'Motor hilang di daerah A', 'Angkot ugal ugalan', 'balap liar', 'Bau menyengat'];
         
-        for($i= 1; $i <=250; $i++)
+        for($i= 1; $i <=150; $i++)
         {
             Pengaduan::create([
                 'id' => $i,

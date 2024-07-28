@@ -151,17 +151,16 @@
         </div>
 
         @guest
-        <div class="pb-20 bg-blue-900 -mt-20 h-[55rem] lg:h-[35rem]" >
+        <div class="pb-20 bg-blue-900 -mt-20 h-[55rem] lg:h-[25rem]" >
         @endguest
-        <div class="pb-20 bg-blue-900 -mt-20 h-[65rem] lg:h-[55rem]" >
+        <div class="pb-20 bg-blue-900 -mt-20 h-[65rem] lg:h-[40rem]" >
             <div class="lg:container mx-auto px-6 lg:px-2">
                 <div class="flex-row lg:flex relative">
 
                     <div class=" w-full lg:w-7/12 container mx-auto h-96">
                         <div class="flex flex-wrap justify-center" style="min-height:30rem;">
                             <div class="w-full px-4 ">
-                                <div
-                                    class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-50 h-5/6 md:h-full">
+                                <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-50 h-full xs:h-auto">
                                     <div class="flex-auto p-5 lg:p-10 py-auto">
                                         @guest
                                         <div class="mt-10 md:mt-32 w-full mx-auto">
@@ -171,6 +170,10 @@
                                                     href="{{route('login')}}"> login </a>
                                                 <a class="bg-slate-200 py-2 px-4 rounded border border-spacing-0.5"
                                                     href="{{route('register')}}"> Register </a>
+                                            </div>
+                                            <div class="text-center mt-6">
+                                                <h1 class="text-lg md:text-3xl font-semibold">Disclaimer</h1>
+                                                <p class="text-sm">This website is only a work for school assignments, if you want to submit a complaint, the Depok City Communication and Information Service (Diskominfo) provides services in the form of SMS Center 0811-1631-500 or Call Center 0811-1232-222</p>
                                             </div>
                                         </div>
                                         @else
@@ -240,8 +243,8 @@
                         </div>
                     </div>
 
-                    <div class="pt-6 lg:pt-12 w-full lg:w-6/12 px-4 text-center mt-0 md:mt-80 lg:mt-0">
-                        <div class="flex flex-col min-w-0 max-w-xl break-words bg-blue-50 w-full mb-8 shadow-lg rounded-lg">
+                    <div class="pt-6 lg:pt-12 w-full lg:w-6/12 px-4 text-center lg:mt-0">
+                        <div class="flex flex-col min-w-0 max-w-xl break-words bg-blue-50 w-full mb-8 mt-56 sm:mt-24 md:mt-20 lg:mt-0 shadow-lg rounded-lg">
                             <div class="px-4 py-5 flex-auto h-96 align-middle">
                                 <h6 class="text-xl font-semibold mb-5">Pengaduan Terbaru</h6>
                                 {{-- <form id="lets_search" action="" style="" class="mx-auto mt-3"> --}}
@@ -311,7 +314,7 @@
                     <polygon class="text-white fill-current" points="2560 0 2560 100 0 100"></polygon>
                 </svg>
             </div>
-            <div class="container mx-auto px-4 -mt-16">
+            <div class="container mx-auto px-4">
                 <div class="items-center flex flex-wrap">
                     <div class="w-full md:w-5/12 ml-auto mr-auto px-4 h-96 bg-top bg-cover">
                         <img alt="..." class="max-w-full rounded-lg shadow-lg "
@@ -496,7 +499,7 @@
         </section> --}}
     </main>
     {{--  footer   --}}
-    <footer class="relative bg-gray-300 pt-8 pb-6">
+    {{-- <footer class="relative bg-gray-300 pt-8 pb-6">
         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style="height: 80px;">
             <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
@@ -508,22 +511,7 @@
             <div class="flex flex-wrap">
                 <div class="w-full lg:w-6/12 px-4">
                     <img src="{{asset('img/logo_pede_nobg.png')}}" alt="" class="w-32 lg:mt-10 lg:ml-10">
-                    {{-- <div class="mt-6">
-                        <button
-                            class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                            type="button">
-                            <i class="flex fab fa-twitter"></i></button><button
-                            class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                            type="button">
-                            <i class="flex fab fa-facebook-square"></i></button><button
-                            class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                            type="button">
-                            <i class="flex fab fa-dribbble"></i></button><button
-                            class="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                            type="button">
-                            <i class="flex fab fa-github"></i>
-                        </button>
-                    </div> --}}
+                    
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
                     <div class="flex flex-wrap items-top mb-6">
@@ -567,7 +555,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
 </body>
 <script src="{{ asset('view/searchFilter.js') }}"></script>

@@ -14,7 +14,7 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        $pengaduan_id = range(1, 250);
+        $pengaduan_id = range(1, 150);
         for($i= 1; $i <=300; $i++){
             Image::create([
                 'id' => $i,

@@ -52,8 +52,6 @@ class HomeController extends Controller
         }
         
         if(Auth::user()->role == 'public'){
-
-            
             $publicPengaduan = $this->pengaduanService->handleGetAllPublicPengaduan();
             $privatePengaduan = $this->pengaduanService->handleGetPrivatePengaduan();
             $image = $this->imageService-> handleGetAllImage();

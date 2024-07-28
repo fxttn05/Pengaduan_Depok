@@ -1,3 +1,4 @@
+{{-- page 1 --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
 <body>
     <table class="top" style="width: 100%">
         <tr>
-            <td style="width: 30%"><img src="{{asset('img/logo_pede_nobg.png')}}" alt="" class="img-logo"></td>
+            <td style="width: 30%"><img src="{{public_path('img/logo_pede_nobg.png')}}" alt="" class="img-logo"></td>
             <td style="width: 70%; padding-left: 5rem" class="judul">
                 <p style="font-size: 2.25rem; line-height: 2.5rem; text-align: center; font-weight: 600" class="font-bol">PEDULI DEPOK</p>
             </td>
@@ -49,38 +50,45 @@
             {{$pengaduan->isi}}<br>
         </p>
         <p style="margin-left: 0.5rem; margin-right: 3rem;text-align: justify; text-indent: 2rem">
-            Demikian Surat Laporan ini kami sampaikan dengan sebenar-benarnya agar dapat ditindak lanjuti sebagaimana mestinya.
+            Demikian surat laporan ini saya sampaikan dengan sebenar-benarnya agar dapat ditindak lanjuti sebagaimana mestinya. Jika saya terbukti tidak jujur dalam melaporkan, saya bersedia menerima hukuman yang ada.
         </p>
     </div>
+</body>
+</html>
+{{-- page 2 --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style=" max-width:1vw">
+    @php
+    $no = 1
+    @endphp
     @if($image)
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <h2 style="text-align: center">Lampiran</h2>
     <br>
-    <br>
+    <div style="  max-width:1vw">
+        @forelse($image->where('pengaduan_id', $pengaduan->id) as $key)
+        <div style=" max-width: 25rem; max-height: 29em;" class="photo-item">
+            <img src="{{public_path('image/'.$key->image)}}" alt="" style="max-width: 25rem; max-height: 25rem">
+            <br>
+            <p style="text-align:center"> Gambar {{$no++}} </p>
+        </div>
+        @empty
+        @endforelse
+    </div>
     @endif
-    @php
-        $no = 1
-    @endphp
-    <table style="margin-left: 30%; margin-right: 30%;">
+    
+    
+        
+    {{-- <table style="margin-left: 30%; margin-right: 30%;">
         @forelse($image->where('pengaduan_id', $pengaduan->id) as $key)
         <tr>
             <td>
-                <img src="{{asset('image/'.$key->image)}}" alt="" style="max-width: 15rem; max-height: 15rem">
                 <br>
                 <p style="text-align:center"> Gambar {{$no++}} </p>
             </td>
@@ -91,6 +99,6 @@
         <tr>
             <td></td>
         </tr>
-    </table>
+    </table> --}}
 </body>
 </html>

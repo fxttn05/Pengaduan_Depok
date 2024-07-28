@@ -38,14 +38,14 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345'),
                 'role' => 'public', 
             ],
-            [
-                'name' => 'Dina',
-                'NIK' => '3173082003030002',
-                'telp' => '081213521068',
-                'email' => 'dina@pede',
-                'password' => bcrypt('12345'),
-                'role' => 'public', 
-            ],
+            // [
+            //     'name' => 'Dina',
+            //     'NIK' => '3173082003030002',
+            //     'telp' => '081213521068',
+            //     'email' => 'dina@pede',
+            //     'password' => bcrypt('12345'),
+            //     'role' => 'public', 
+            // ],
             [
                 'name' => 'masyarakat1',
                 'NIK' => '318309200406001',

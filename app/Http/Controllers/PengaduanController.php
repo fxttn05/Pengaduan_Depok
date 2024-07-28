@@ -84,7 +84,7 @@ class PengaduanController extends Controller
         ]);
         $pdf = PDF::loadview('export-pdf');
         // return view ('export-pdf');
-        return $pdf->download('pengaduan-'.$pengaduan->id.'-'.$pengaduan->user->nik.'.pdf');
+        return $pdf->stream('pengaduan-'.$pengaduan->id.'-'.$pengaduan->user->nik.'.pdf');
     }
 
     /**

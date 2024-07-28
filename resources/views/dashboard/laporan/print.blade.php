@@ -31,25 +31,25 @@
     <table style="width:100%; border: 0.5px solid black; border-collapse: collapse; padding: 2px">
         <tbody>
             <tr style="font-size: 0.7rem; margin-bottom: 3px; border: 0.5px solid black; border-collapse: collapse; padding: 2px">
-                <td style="border: 0.5px solid black; border-collapse: collapse;">judul</td>
-                <td style="border: 0.5px solid black; border-collapse: collapse;">pelapor</td>
-                <td style="border: 0.5px solid black; border-collapse: collapse;">tanggal kejadian</td>
-                <td style="border: 0.5px solid black; border-collapse: collapse;">status</td>
-                <td style="border: 0.5px solid black; border-collapse: collapse;">tanggal terlapor</td>
+                <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px; font-weight: 600">judul</td>
+                <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px; font-weight: 600">pelapor</td>
+                <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px; font-weight: 600">tanggal kejadian</td>
+                <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px; font-weight: 600">status</td>
+                <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px; font-weight: 600">tanggal terlapor</td>
             </tr>
             @foreach ($pengaduan as $item)
                 <tr style="font-size: 0.6rem; border: 0.5px solid black; border-collapse: collapse; padding: 2px">
-                    <td style="border: 0.5px solid black; border-collapse: collapse;">{{ $item->judul }}</td>
-                    <td style="border: 0.5px solid black; border-collapse: collapse;">{{ $item->user->name}}</td>
-                    <td style="border: 0.5px solid black; border-collapse: collapse;">{{ $item->pengaduan_date }}</td>
+                    <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px;">{{ $item->judul }}</td>
+                    <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px;">{{ $item->user->name}}</td>
+                    <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px;">{{ $item->pengaduan_date }}</td>
                     @if($item->status == '1.report')
-                    <td style="border: 0.5px solid black; border-collapse: collapse;">Report</td>
+                    <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px;">Report</td>
                     @elseif($item->status == '2.verified')
-                    <td style="border: 0.5px solid black; border-collapse: collapse;">verified</td>
+                    <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px; color: green">verified</td>
                     @elseif($item->status == '1.replied')
-                    <td style="border: 0.5px solid black; border-collapse: collapse;">Replied</td>
+                    <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px; color: blue">Replied</td>
                     @endif
-                    <td style="border: 0.5px solid black; border-collapse: collapse;">{{ $item->created_at }}</td>
+                    <td style="border: 0.5px solid black; border-collapse: collapse; padding: 3px;">{{ $item->created_at }}</td>
                 </tr>
             @endforeach
         </tbody>
